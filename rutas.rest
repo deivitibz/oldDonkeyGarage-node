@@ -1,0 +1,36 @@
+### API USUARIOS
+GET http://localhost:3000/api/usuarios
+###
+POST http://localhost:3000/api/usuarios
+###
+PUT http://localhost:3000/api/usuarios
+###
+DELETE http://localhost:3000/api/usuarios
+###
+### API ANUNCIOS
+GET http://localhost:3000/api/anuncios
+###
+POST http://localhost:3000/api/anuncios
+###
+PUT http://localhost:3000/api/anuncios
+###
+DELETE http://localhost:3000/api/anuncios
+###
+### API NOTICIAS
+GET http://localhost:3000/api/noticias
+###
+POST http://localhost:3000/api/noticias
+###
+PUT http://localhost:3000/api/noticias
+###
+DELETE http://localhost:3000/api/noticias
+###
+### API MOTOCICLETAS
+GET http://localhost:3000/api/motos
+###
+POST http://localhost:3000/api/motos
+###
+PUT http://localhost:3000/api/motos
+###
+DELETE http://localhost:3000/api/motos
+###
