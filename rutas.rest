@@ -29,6 +29,11 @@ DELETE http://localhost:3000/api/noticias
 GET http://localhost:3000/api/motos
 ###
 POST http://localhost:3000/api/motos
+Content-Type: application/json
+
+{
+    "tipo": "buggy"
+}
 ###
 PUT http://localhost:3000/api/motos
 ###

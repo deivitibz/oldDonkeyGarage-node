@@ -12,7 +12,8 @@ router.get('/', async (req,res)=>{
 
 // POST http://localhost:3000/api/motos
 // crear usuario
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
+    const response = await TipoMoto.addNew(req.body);
     res.json({message: 'motocicletas router works'});
 
 });
