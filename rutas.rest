@@ -38,4 +38,13 @@ Content-Type: application/json
 PUT http://localhost:3000/api/motos
 ###
 DELETE http://localhost:3000/api/motos
-###
+### registrar usuario
+
+POST http://localhost:3000/api/usuarios/registro
+Content-Type: application/json
+
+{
+    "username": "deivit",
+    "password": "12345",
+    "email": "deivit@deivit.es"
+}
