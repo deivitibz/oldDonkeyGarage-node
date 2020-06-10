@@ -1,6 +1,7 @@
 extends layout
 
 block content
-  h1= message
-  h2= error.status
-  pre #{error.stack}
+  form(action="/api/anuncios/upload" method="post" enctype="multipart/form-data")
+    .form-group
+      input(type="file" name="photos")
+      input(type="submit" value="enviar").btn.btn-default
