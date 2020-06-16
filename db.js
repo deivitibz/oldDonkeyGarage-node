@@ -2,11 +2,11 @@ const mysql = require('mysql');
 
 const connect = () => {
     const pool = mysql.createPool({
-        host:'mypanel.sytes.net',
-        user: 'donkey',
-        password: 'olddonkeygarage',
-        port: 3306,
-        database: 'olddonkeygarage'
+        host: process.env.DB_HOST,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        port: process.env.DB_PORT,
+        database: process.env.DB_DATABASE
     });
     global.db = pool;
 };

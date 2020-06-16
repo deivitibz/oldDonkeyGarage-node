@@ -6,6 +6,7 @@ const TipoMoto = require('../../models/tipoMotos');
 router.get('/', async (req,res)=>{
      const rows = await TipoMoto.getAll();
      console.log(rows);
+      res.json({message: 'El servicio funciona correctamente'});
      
         
 });

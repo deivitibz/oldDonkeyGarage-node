@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const moment = require('moment');
 
-const Usuario = require ('../../controller/usuario.controller')
+const Usuario = require ('../../controller/usuario.controller');
 
 
 // TODO: registrar usuario
@@ -22,9 +22,31 @@ router.post('/registro', async (req, res) => {
 
 // TODO: loguear usuario
 
-router.post('/login', (req, res) => {
-
+router.post('/login', async (req, res) => {
+    console.log(req.headers);
+    
+    const usuario = await Usuario.getByEmail(req.body.email);
+    if (usuario) {
+        const iguales = bcrypt.compareSync(req.body.password, usuario.password);
+        if (iguales) {
+             res.json({ success: 'Login correcto', token: createToken(usuario.id)});
+        } else {
+             res.json({ error: 'Error en email y/o password'});
+        }
+    } else {
+         res.json({ error: 'Error en email y/o password'});
+    }
 });
+
+
+function createToken(userId) {
+    const payload = {
+        userId: userId,
+        createdAt: moment().unix(),
+        expiredAt: moment().add(15, 'minutes').unix() 
+    }
+    return jwt.sign(payload, process.env.SECRET_KEY)
+}
 
 
 // GET http://localhost:3000/api/usuarios

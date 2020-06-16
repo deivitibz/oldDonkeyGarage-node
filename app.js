@@ -10,7 +10,11 @@ const multipartMiddleware = multipart();
 const cors = require('cors');
 
 
+// Cargamos las variables de entorno
+require('dotenv').config();
+
 // RUTAS APP
+const middlewares = require('./routes/middlewares');
 const apiRouter = require('./routes/api');
 
 // Creamos la conexión con la BD
