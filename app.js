@@ -4,6 +4,8 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const app = express();
+const multipart = require('connect-multiparty');
+const multipartMiddleware = multipart();
 
 const cors = require('cors');
 
@@ -13,6 +15,9 @@ const apiRouter = require('./routes/api');
 
 // Creamos la conexión con la BD
 require('./db').connect();
+
+// middlewares
+
 
 // motor de vistas
 app.use(cors());
