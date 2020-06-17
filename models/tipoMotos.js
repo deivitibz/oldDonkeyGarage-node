@@ -1,6 +1,6 @@
 const getAll = () => {
     return new Promise((resolve, reject) => {
-        db.query('select * from tipo_custom', (err, rows) => {
+        db.query('select * from tipo_moto', (err, rows) => {
             if (err) reject(err);
             resolve(rows);
         });

@@ -13,7 +13,7 @@ router.use('/noticias', apiNoticiasRouter);
 router.use('/usuarios', apiUsuariosRouter);
 router.use('/anuncios', apiAnunciosRouter);
 router.use('/motos', apiMotosRouter);
-router.use('/anuncios', apiPerfilRouter);
+router.use('/perfil', apiPerfilRouter);
 router.use('/constructor', apiConstructoresRouter);
 
 module.exports = router;
