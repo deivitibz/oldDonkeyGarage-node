@@ -1,8 +1,46 @@
-const create = ({ titulo, imagenes = 'https://picsum.photos/200', descripcion, km, year, tipo_motocicleta, provincia, itv, homologacion, fecha_publicacion = new Date()}) => {
+// TODO: GETALLANUNCIOS
+
+const getAllAnuncios = () => {
+    return new Promise((resolve, reject) => {
+        db.query('select * from olddonkeygarage.anuncio'), (err, rows) => {
+            if (err) resolve(err);
+            resolve(rows)
+        }
+    })
+}
+
+//TODO : GETBYID
+const getById = (anuncioid) => {
+    return new Promise((resolve, reject) => {
+        db.query('select * from olddonkeygarage.anuncio where id = ?', [anuncioid], (err, rows) => {
+            if (err) reject(err);
+            if (rows.length !== 1) resolve(null);
+            resolve(rows[0])
+        });
+    });
+};
+
+// TODO: CREATE
+
+const create = ({
+    titulo,
+    imagenes = 'https://picsum.photos/200',
+    descripcion,
+    km,
+    year,
+    provincia,
+    poblacion,
+    itv,
+    homologacion,
+    precio,
+    marca,
+    modelo,
+    usuarios_id
+}) => {
     return new Promise((resolve, reject) => {
         db.query(
-            'insert into anuncios (titulo, imagenes, descripcion, km, year, tipo_motocicleta, provincia, itv, homologacion, fecha_publicacion) values(?,?,?,?,?,?,?,?,?,?)',
-            [titulo, imagenes, descripcion, km, year, tipo_motocicleta, provincia, itv, homologacion, fecha_publicacion],
+            'insert into olddonkeygarage.anuncio (titulo, imagenes, descripcion, km, year,  provincia, poblacion, itv, homologacion, fecha_publicacion, precio, marca, modelo, usuarios_id) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
+            [titulo, imagenes, descripcion, km, year, provincia, poblacion, itv, homologacion, new Date(), precio, marca, modelo, usuarios_id],
             (err, result) => {
                 if (err) reject(err);
                 resolve(result);
@@ -12,41 +50,46 @@ const create = ({ titulo, imagenes = 'https://picsum.photos/200', descripcion, k
 
 }
 
-// TODO: GET BY EMAIL
-
-const getByEmail = (email) => {
+// TODO: DELETE
+const deleteById = (anuncioId) => {
     return new Promise((resolve, reject) => {
-        db.query(
-            'select * from usuarios where email = ?',
-            [email],
-            (err, rows) => {
-                if (err) reject(err);
-                if (rows.length !== 1) resolve(null);
-                resolve(rows[0]);
-            }
-        );
+        db.query('select * from olddonkeygarage.anuncio where id = ?', [anuncioId], (err, result) => {
+            if (err) resolve(null);
+            resolve(result)
+        });
     });
 }
 
 
-// TODO: GET BY USUARIO
-
-
-const getByUser = (userId) => {
-    return new Promise((resolve,reject)=>{
-        db.query(
-            'select * from usuarios where id = ?',
-            [userId],
-            (err,response) => {
-                if (err) reject(err);
-                if (rows.length !== 1) resolve (null);
-                resolve(rows[0]);
-            }
-        )
+//TODO: UPDATEBYID
+const updateById = (pAnuncioId, {
+    titulo,
+    imagenes,
+    descripcion,
+    km,
+    year,
+    provincia,
+    poblacion,
+    itv,
+    homologacion,
+    precio,
+    marca,
+    modelo,
+    usuarios_id
+}) => {
+    return new Promise((resolve, reject) => {
+        db.query('update olddonkeygarage.anuncio set titulo=?, imagenes = ?, descripcion = ?, km = ?, year = ?, provincia = ?, poblacion = ?, itv = ?, homologacion = ?, fecha_publicacion = ?, precio = ?, marca = ?, modelo = ?, usuarios_id = ? where id = ?', [titulo, imagenes, descripcion, km, year, provincia, poblacion, itv, homologacion, new Date(), precio, marca, modelo, usuarios_id, pAnuncioId], (err, result) => {
+            if (err) resolve(null);
+            resolve(result);
+        });
     });
-}
+};
 
 
 module.exports = {
-    create,getByEmail,getByUser
+    getAllAnuncios,
+    getById,
+    create,
+    deleteById,
+    updateById
 }
