@@ -1,4 +1,4 @@
-const create = ({ titulo, imagenes, descripcion, km, year, tipo_motocicleta, provincia, itv, homologacion, fecha_publicacion}) => {
+const create = ({ titulo, imagenes = 'https://picsum.photos/200', descripcion, km, year, tipo_motocicleta, provincia, itv, homologacion, fecha_publicacion = new Date()}) => {
     return new Promise((resolve, reject) => {
         db.query(
             'insert into anuncios (titulo, imagenes, descripcion, km, year, tipo_motocicleta, provincia, itv, homologacion, fecha_publicacion) values(?,?,?,?,?,?,?,?,?,?)',

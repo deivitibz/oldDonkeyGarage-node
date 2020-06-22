@@ -23,10 +23,8 @@ router.post('/registro', async (req, res) => {
 // TODO: loguear usuario
 
 router.post('/login', async (req, res) => {
-    console.log(req.headers);
-    
     const usuario = await Usuario.getByEmail(req.body.email);
-    if (usuario) {
+     if (usuario) {
         const iguales = bcrypt.compareSync(req.body.password, usuario.password);
         if (iguales) {
              res.json({ success: 'Login correcto', token: createToken(usuario.id)});
@@ -35,15 +33,19 @@ router.post('/login', async (req, res) => {
         }
     } else {
          res.json({ error: 'Error en email y/o password'});
-    }
+    } 
 });
 
+router.get('/check', (req,res) => {
+    console.log(req.headers['user-token']);
+     res.json(req.payload);
+})
 
 function createToken(userId) {
     const payload = {
         userId: userId,
         createdAt: moment().unix(),
-        expiredAt: moment().add(15, 'minutes').unix() 
+        expiredAt: moment().add(60, 'minutes').unix() 
     }
     return jwt.sign(payload, process.env.SECRET_KEY)
 }
@@ -51,9 +53,17 @@ function createToken(userId) {
 
 // GET http://localhost:3000/api/usuarios
 // obtener todos los usuarios
-router.get('/', (req,res)=>{
-     res.json({message: 'usuarios router works'});
+router.get('/', async (req,res)=>{
+    const rows = await Usuario.getAllUsers();
+    console.log(rows);
+    
+    res.json(rows);
 });
+
+router.get('/:id', async (req,res) => {
+    const user = await Usuario.getByUser(req.params.id);
+    res.json(user);
+})
 
 // POST http://localhost:3000/api/usuarios
 // crear usuario

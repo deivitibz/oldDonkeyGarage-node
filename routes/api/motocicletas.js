@@ -11,6 +11,12 @@ router.get('/', async (req,res)=>{
         
 });
 
+router.get('/:id', async (req,res)=>{
+     res.json({message: 'El servicio funciona correctamente con el id ' + req.params.id});
+    
+       
+});
+
 // POST http://localhost:3000/api/motos
 // crear usuario
 router.post('/', async (req, res) => {

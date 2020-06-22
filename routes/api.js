@@ -1,5 +1,7 @@
 const router = require('express').Router();
 
+const { checkToken } = require('./middlewares')
+
 const apiUsuariosRouter = require('./api/usuarios');
 const apiAnunciosRouter = require('./api/anuncios');
 const apiNoticiasRouter = require('./api/noticias');
@@ -7,13 +9,12 @@ const apiMotosRouter = require('./api/motocicletas');
 const apiPerfilRouter = require('./api/perfil');
 const apiConstructoresRouter = require('./api/constructores')
 
-const { checkToken } = require('./middlewares');
 
-router.use('/noticias', apiNoticiasRouter);
+router.use('/noticias', checkToken, apiNoticiasRouter);
 router.use('/usuarios', apiUsuariosRouter);
-router.use('/anuncios', apiAnunciosRouter);
-router.use('/motos', apiMotosRouter);
-router.use('/perfil', apiPerfilRouter);
-router.use('/constructor', apiConstructoresRouter);
+router.use('/anuncios', checkToken, apiAnunciosRouter);
+router.use('/motos', checkToken, apiMotosRouter);
+router.use('/perfil', checkToken, apiPerfilRouter);
+router.use('/constructor', checkToken, apiConstructoresRouter);
 
 module.exports = router;

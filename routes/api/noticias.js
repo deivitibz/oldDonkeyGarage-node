@@ -17,8 +17,7 @@ router.get('/:id', (req,res)=>{
 // POST http://localhost:3000/api/noticias
 // crear usuario
 router.post('/', (req, res) => {
-    
-    res.json({message: 'noticias router works'});
+    res.json({message: 'noticias router works', body: req.body});
 
 });
 

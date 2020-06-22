@@ -73,3 +73,13 @@ Content-Type: application/json
 
 ###
 GET http://streaming.zapto.org:3000/api/constructor
+
+###
+GET http://localhost:3000/api/perfil
+
+###
+GET http://localhost:3000/api/motos
+
+
+###
+POST http://pikukoiptv.zapto.org:25500/api.php
