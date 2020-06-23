@@ -2,10 +2,10 @@
 
 const getAllTutorial = () => {
     return new Promise((resolve, reject) => {
-        db.query('select * from olddonkeygarage.video_tutorial'), (err, rows) => {
+        db.query('select * from olddonkeygarage.video_tutorial', (err, rows) => {
             if (err) resolve(null);
-            resolve(rows)
-        };
+            resolve(rows);
+        });
     });
 };
 
@@ -15,7 +15,7 @@ const getById = (tutorialId) => {
         db.query('select * from olddonkeygarage.video_tutorial where id = ?', [tutorialId], (err, rows) => {
             if (err) reject(err);
             if (rows.length !== 1) resolve(null);
-            resolve(rows[0])
+            resolve(rows[0]);
         });
     });
 };
@@ -28,12 +28,11 @@ const create = ({
     categoria,
     url_video,
     premium,
-    fecha_publicacion,
     usuarios_id
 }) => {
-    return new promise((resolve, reject) => {
-        db.query('insert into olddonkeygarage.video_tutorial(titulo=?, descripcion=?,autor=?,categoria=?, url_video=?, premium=?, fecha_publicacion, usuarios_id) values(?,?,?,?,?,?,?,?)', [titulo, descripcion, autor, categoria, url_video, premium, fecha_publicacion, usuarios_id], (err, result) => {
-            if (err) resolve(null);
+    return new Promise((resolve, reject) => {
+        db.query('insert into olddonkeygarage.video_tutorial(titulo, descripcion,autor,categoria, url_video, premium, fecha_publicacion, usuarios_id) values(?,?,?,?,?,?,?,?)', [titulo, descripcion, autor, categoria, url_video, premium, new Date(), usuarios_id], (err, result) => {
+            if (err) reject(err);
             resolve(result);
         });
     });
@@ -42,7 +41,7 @@ const create = ({
 // TODO : DELETEBYID
 const deleteById = (tutorialId) => {
     return new Promise((resolve, reject) => {
-        db.query('select * from olddonkeygarage.video_tutorial where id=?', [tutorialId], (err, result) => {
+        db.query('DELETE FROM olddonkeygarage.video_tutorial where id=?', [tutorialId], (err, result) => {
             if (err) resolve(null);
             resolve(result);
         });
@@ -58,11 +57,10 @@ const updateById = (tutorialId, {
     categoria,
     url_video,
     premium,
-    fecha_publicacion,
     usuarios_id
 }) => {
     return new Promise((resolve, reject) => {
-        db.query('update olddonkeygarage.video_tutorial set titulo=?, descripcion=?, autor=?, categoria=?, url_video=?, premium=?, fecha_publicacion=?, usuarios_id=?' [titulo, descripcion, autor, categoria, url_video, premium, fecha_publicacion, usuarios_id, tutorialId], (err, result) => {
+        db.query('update olddonkeygarage.video_tutorial set titulo=?, descripcion=?, autor=?, categoria=?, url_video=?, premium=?, fecha_publicacion=?, usuarios_id=? where id = ?', [titulo, descripcion, autor, categoria, url_video, premium, new Date(), usuarios_id, tutorialId], (err, result) => {
             if (err) resolve(null);
             resolve(result);
         });

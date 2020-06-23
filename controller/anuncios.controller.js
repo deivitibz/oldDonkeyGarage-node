@@ -2,11 +2,11 @@
 
 const getAllAnuncios = () => {
     return new Promise((resolve, reject) => {
-        db.query('select * from olddonkeygarage.anuncio'), (err, rows) => {
+        db.query('select * from olddonkeygarage.anuncio', (err, rows) => {
             if (err) resolve(err);
-            resolve(rows)
-        }
-    })
+            resolve(rows);
+        });
+    });
 }
 
 //TODO : GETBYID
@@ -53,12 +53,12 @@ const create = ({
 // TODO: DELETE
 const deleteById = (anuncioId) => {
     return new Promise((resolve, reject) => {
-        db.query('select * from olddonkeygarage.anuncio where id = ?', [anuncioId], (err, result) => {
-            if (err) resolve(null);
+        db.query('DELETE FROM olddonkeygarage.anuncio where id=?', [anuncioId], (err, result) => {
+            if (err) reject(err);
             resolve(result)
         });
     });
-}
+};
 
 
 //TODO: UPDATEBYID

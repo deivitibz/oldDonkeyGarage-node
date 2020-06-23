@@ -1,10 +1,10 @@
 // TODO : GETALLNOTICIAS
 const getAllNoticias = () => {
     return new Promise((resolve, reject) => {
-        db.query('select * from olddonkeygarage.noticia'), (err, rows) => {
+        db.query('select * from olddonkeygarage.noticia', (err, rows) => {
             if (err) resolve(null);
             resolve(rows)
-        };
+        });
     });
 };
 
@@ -26,15 +26,13 @@ const create = ({
     autor,
     categoria,
     imagen,
-    estado,
-    fecha_publicacion = new Date(),
     usuarios_id
 
 }) => {
     return new Promise((resolve, reject) => {
-        db.query('insert into olddonkeygarage.noticia (titulo, descripcion, autor, categoria, imagen, estado, fecha_publicacion, usuarios_id) values(?,?,?,?,?,?,?,?)', [titulo, descripcion, autor, categoria, imagen, estado, fecha_publicacion, usuarios_id], (err, result) => {
-            if (err) resolve(null),
-                resolve(result);
+        db.query('insert into olddonkeygarage.noticia (titulo, descripcion, autor, categoria, imagen, fecha_publicacion, usuarios_id) values(?,?,?,?,?,?,?)', [titulo, descripcion, autor, categoria, imagen, new Date(), usuarios_id], (err, result) => {
+            if (err) reject(err);
+            resolve(result);
         });
     });
 };
@@ -43,9 +41,9 @@ const create = ({
 
 const deleteById = (noticiaId) => {
     return new Promise((resolve, reject) => {
-        db.query('select * from olddonkeygarage.noticia where id = ?', [noticiaId], (err, result) => {
-            if (err) resolve(null);
-            resolve(result);
+        db.query('DELETE FROM olddonkeygarage.noticia where id=?', [noticiaId], (err, result) => {
+            if (err) reject(err);
+            resolve(result)
         });
     });
 };
@@ -58,11 +56,10 @@ const updateById = (noticiaId, {
     autor,
     categoria,
     imagen,
-    estado,
     usuarios_id
 }) => {
     return new Promise((resolve, reject) => {
-        db.query('update olddonkeygarage.noticia set titulo=?, descripcion=?, autor=?, categoria=?, imagen=?, estado=?, fecha_publicacion=?, usuarios_id=?', [titulo, descripcion, autor, categoria, imagen, estado, new Date(), usuarios_id, noticiaId], (err, result) => {
+        db.query('update olddonkeygarage.noticia set titulo=?, descripcion=?, autor=?, categoria=?, imagen=?, fecha_publicacion=?, usuarios_id=? where id = ?', [titulo, descripcion, autor, categoria, imagen, new Date(), usuarios_id, noticiaId], (err, result) => {
             if (err) resolve(null);
             resolve(result);
         });

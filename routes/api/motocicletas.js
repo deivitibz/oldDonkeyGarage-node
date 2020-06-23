@@ -1,41 +1,93 @@
 const router = require('express').Router();
-const TipoMoto = require('../../models/tipoMotos');
+const TipoMoto = require('../../controller/tipo_moto.controller');
 
 // GET http://localhost:3000/api/motos
-// obtener todos los usuarios
-router.get('/', async (req,res)=>{
-     const rows = await TipoMoto.getAll();
-     console.log(rows);
-      res.json({message: 'El servicio funciona correctamente'});
-     
-        
+// obtener todos las motos
+router.get('/', (req, res) => {
+    TipoMoto.getAllTipos()
+        .then((rows) => {
+            res.json({
+                rows
+            })
+        })
+        .catch(err => {
+            res.json({
+                error: err.message
+            });
+        });
+
+
 });
 
-router.get('/:id', async (req,res)=>{
-     res.json({message: 'El servicio funciona correctamente con el id ' + req.params.id});
-    
-       
+// GET http://localhost:3000/api/motos/:id
+// una moto
+router.get('/:id', async (req, res) => {
+    const moto = await TipoMoto.getById(req.params.id);
+
+    res.json(moto);
+
 });
 
 // POST http://localhost:3000/api/motos
 // crear usuario
 router.post('/', async (req, res) => {
-    const response = await TipoMoto.addNew(req.body);
-    res.json({message: 'motocicletas router works'});
+    const result = await TipoMoto.create(req.body);
+    console.log('entra');
+
+
+    if (result['affectedRows'] === 1) {
+        const moto = await TipoMoto.getById(result['insertId']);
+        res.json({
+            success: 'se ha creado el  tipo moto'
+        });
+    } else {
+        res.json({
+            error: 'algo has liado'
+        });
+    }
+
 
 });
 
 // PUT http://localhost:3000/api/motocicletas
-// editar usuario
-router.put('/', (req, res) => {
-    res.json({message: 'motocicletas router works'});
+// editar una moto
+router.put('/:id', async (req, res) => {
+    const result = await TipoMoto.updateById(req.params.id, req.body);
+    console.log(result);
 
+    if (result['affectedRows'] === 1) {
+        res.json({
+            sucess: 'moto actualizada'
+        });
+    } else {
+        res.json({
+            error: 'algo has liado'
+        })
+    }
 });
 
 // DELETE http://localhost:3000/api/motocicletas
-// borrar usuario
-router.delete('/', (req, res) => {
-    res.json({message: 'motocicletas router works'});
+// borrar moto
+router.delete('/:id', async (req, res) => {
+
+    const moto = await TipoMoto.getById(req.params.id);
+    console.log(moto);
+
+
+    const result = await TipoMoto.deleteById(req.params.id, req.body);
+
+    if (result['affectedRows'] === 1) {
+        // console.log(result);
+
+        res.json({
+            sucess: 'se ha eliminado la moto'
+        });
+    } else {
+        res.json({
+            error: 'algo has liado'
+        })
+    }
+
 
 });
 

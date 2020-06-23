@@ -2,43 +2,218 @@
 GET http://localhost:3000/api/usuarios
 UserToken: 
 ###
+GET http://localhost:3000/api/usuarios/14
+UserToken: 
+###
 POST http://localhost:3000/api/usuarios
+Content-Type: application/json
+
+{
+  "username": "La prueba4",
+  "email": "asdf@fsf.es",
+  "password": "hola",
+  "nombre": null,
+  "apellidos": null,
+  "direccion": null,
+  "localidad": null,
+  "provincia": null,
+  "nombre_constuctor": null,
+  "descripcion": null,
+  "persona_contacto": null,
+  "telefono": null,
+  "imagenes_usuario": null,
+  "imagenes_constructor": null
+}
 ###
-PUT http://localhost:3000/api/usuarios
+PUT http://localhost:3000/api/usuarios/19
+Content-Type: application/json
+
+{
+  "id": 19,
+  "username": "La prueba56",
+  "email": "asdf@fsf.es",
+  "password": "hola",
+  "rol": "usuario",
+  "nombre": null,
+  "apellidos": null,
+  "direccion": null,
+  "localidad": null,
+  "provincia": null,
+  "nombre_constuctor": null,
+  "descripcion": null,
+  "persona_contacto": null,
+  "telefono": null,
+  "imagenes_usuario": null,
+  "imagenes_constructor": null
+}
+
+
 ###
-DELETE http://localhost:3000/api/usuarios
+DELETE http://localhost:3000/api/usuarios/19
 ###
+
+
+
 ### API ANUNCIOS
 GET http://localhost:3000/api/anuncios
 ###
+
+GET http://localhost:3000/api/anuncios/10
+###
+
 POST http://localhost:3000/api/anuncios
+Content-Type: application/json
+
+{
+  "titulo": "BuRRaCa",
+  "imagenes": "",
+  "descripcion": "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.",
+  "km": 10300,
+  "year": 2015,
+  "provincia": "Los Alcazares",
+  "poblacion": "Murcia ",
+  "itv": 0,
+  "homologacion": 0,
+  "fecha_publicacion": "2020-06-22T13:25:44.000Z",
+  "precio": 10200,
+  "marca": "hyosung ",
+  "modelo": "GVAquila 125",
+  "usuarios_id": null
+}
 ###
-PUT http://localhost:3000/api/anuncios
+
+PUT http://localhost:3000/api/anuncios/21
+Content-Type: application/json
+
+{
+  "id":21,
+  "titulo": "BuRRaCa del 15",
+  "imagenes": "",
+  "descripcion": "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.",
+  "km": 10300,
+  "year": 2015,
+  "provincia": "Los Alcazares",
+  "poblacion": "Murcia ",
+  "itv": 0,
+  "homologacion": 0,
+  "fecha_publicacion": "2020-06-22T13:25:44.000Z",
+  "precio": 10200,
+  "marca": "hyosung ",
+  "modelo": "GVAquila 125",
+  "usuarios_id": null
+}
 ###
-DELETE http://localhost:3000/api/anuncios
+DELETE http://localhost:3000/api/anuncios/21
 ###
+
+
+
+
 ### API NOTICIAS
-GET http://localhost:3000/api/noticias
+GET http://localhost:3000/api/noticias/2
+
 ###
 POST http://localhost:3000/api/noticias
+Content-Type: application/json
+
+{
+    "titulo": "tururu",
+    "descripcion": "lo que sea",
+    "autor":"evaristo",
+    "categoria": "reparaciones",
+    "imagen":"safasdgsdfgs",
+    "usuarios_id":"10"
+}
+
 ###
-PUT http://localhost:3000/api/noticias
+PUT  http://localhost:3000/api/noticias/6
+Content-Type: application/json
+
+{
+  "id": 6,
+  "titulo": "arbolito",
+  "descripcion": "lo que sea",
+  "autor": "evaristo",
+  "categoria": "reparaciones",
+  "imagen": "safasdgsdfgs",
+  "fecha_publicacion": "2020-06-22T17:55:27.000Z",
+  "usuarios_id": 10
+}
+
 ###
-DELETE http://localhost:3000/api/noticias
+DELETE http://localhost:3000/api/noticias/31
 ###
+
+
+### API TUTORIALES
+
+GET http://localhost:3000/api/tutoriales
+###
+
+GET http://localhost:3000/api/tutoriales/9
+###
+
+POST http://localhost:3000/api/tutoriales
+Content-Type: application/json
+
+{
+    "titulo": "Café Racer de Bandera",
+    "descripcion": "Video explicativo ",
+    "autor": "Javier Rodriguez",
+    "categoria": "Mecanica",
+    "url_video": null,
+    "premium": 1,
+    "fecha_publicacion": null,
+    "usuarios_id": null
+}
+###
+PUT http://localhost:3000/api/tutoriales/9
+Content-Type: application/json
+
+{
+    "id": 9,
+    "titulo": "Scramblet",
+    "descripcion": "Video explicativo ",
+    "autor": "Javier Rodriguez",
+    "categoria": "Mecanica",
+    "url_video": null,
+    "premium": 1,
+    "fecha_publicacion": null,
+    "usuarios_id": null
+}
+###
+DELETE http://localhost:3000/api/tutoriales/9
+
+
+
 ### API MOTOCICLETAS
 GET http://localhost:3000/api/motos
+
+###
+
+GET http://localhost:3000/api/motos/1
+
 ###
 POST http://localhost:3000/api/motos
 Content-Type: application/json
 
 {
-    "tipo": "asdf"
+  "tipo": "Café Racer",
+  "anuncio_id": 3
 }
+
 ###
-PUT http://localhost:3000/api/motos
+PUT http://localhost:3000/api/motos/3
+Content-Type: application/json
+
+{
+  "id": 3,
+  "tipo": "Scramblet",
+  "anuncio_id": 3
+}
+
 ###
-DELETE http://localhost:3000/api/motos
+DELETE http://localhost:3000/api/motos/2
 
 
 ### registrar usuario

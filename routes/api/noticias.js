@@ -1,53 +1,99 @@
 const router = require('express').Router();
 const Noticia = require('../../controller/noticia.controller')
 
-// GET http://localhost:3000/api/usuarios
-// obtener todos los usuarios
+// GET http://localhost:3000/api/noticias
+// obtener todos las noticias
 router.get('/', (req, res) => {
-    console.log('entra');
+    // console.log('entra');
+    Noticia.getAllNoticias()
+        .then((rows) => {
+            res.json(rows);
+        })
+        .catch(err => {
+            res.json({
+                error: err.message
+            });
+        });
 
-    // Noticia.getAllNoticias()
+});
+// GET http://localhost:3000/api/noticias/id
+// saco una noticia
+router.get('/:id', async (req, res) => {
+    const noticia = await Noticia.getById(req.params.id);
+    res.json(noticia)
 
-    res.json({
-        message: 'noticias router works'
-    });
 });
 
-router.get('/:id', (req, res) => {
-
-
-    res.json({
-        message: 'recupera el id ' + req.params.id
-    });
-});
 
 // POST http://localhost:3000/api/noticias
-// crear usuario
-router.post('/', (req, res) => {
-    res.json({
-        message: 'noticias router works',
-        body: req.body
-    });
+// crear noticia
+router.post('/', async (req, res) => {
+    const result = await Noticia.create(req.body);
+
+
+    if (result['affectedRows'] === 1) {
+        const noticia = await Noticia.getById(result['insertId']);
+        res.json({
+            success: 'se ha creado la noticia'
+        });
+    } else {
+        res.json({
+            error: 'algo has liado'
+        });
+    }
 
 });
 
 // PUT http://localhost:3000/api/noticias
-// editar usuario
-router.put('/', (req, res) => {
-    res.json({
-        message: 'noticias router works'
-    });
+// editar noticia
+router.put('/:id', async (req, res) => {
+    const result = await Noticia.updateById(req.params.id, req.body);
+
+    if (result['affectedRows'] === 1) {
+        res.json({
+            sucess: 'actualización con éxito'
+        });
+    } else {
+        res.json({
+            error: 'algo has liado'
+        })
+    }
+    // res.json({
+    //     message: 'noticias router works'
+    // });
 
 });
 
 // DELETE http://localhost:3000/api/noticias
-// borrar usuario
-router.delete('/', (req, res) => {
-    res.json({
-        message: 'noticias router works'
-    });
+// borrar noticia
+router.delete('/:id', async (req, res) => {
+
+    const noticia = await Noticia.getById(req.params.id);
+    // console.log(noticia);
+    const result = await Noticia.deleteById(req.params.id, req.body);
+    // console.log(result);
+    // console.log(req.params.id);
+    console.log(req.body);
+
+
+    if (result['affectedRows'] === 1) {
+        // console.log(result);
+
+        res.json({
+            sucess: 'se ha eliminado la noticia'
+        });
+    } else {
+        res.json({
+            error: 'algo has liado'
+        })
+    }
+    // res.json({
+    //     message: 'noticias router works'
+    // });
+
 
 });
+
 
 
 module.exports = router;
