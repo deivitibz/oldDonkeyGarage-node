@@ -6,9 +6,7 @@ const TipoMoto = require('../../controller/tipo_moto.controller');
 router.get('/', (req, res) => {
     TipoMoto.getAllTipos()
         .then((rows) => {
-            res.json({
-                rows
-            })
+            res.json(rows)
         })
         .catch(err => {
             res.json({
@@ -32,13 +30,13 @@ router.get('/:id', async (req, res) => {
 // crear usuario
 router.post('/', async (req, res) => {
     const result = await TipoMoto.create(req.body);
-    console.log('entra');
+
+    // console.log(req.body);
 
 
     if (result['affectedRows'] === 1) {
-        const moto = await TipoMoto.getById(result['insertId']);
         res.json({
-            success: 'se ha creado el  tipo moto'
+            success: 'Se ha creado el  tipo moto'
         });
     } else {
         res.json({
@@ -57,7 +55,7 @@ router.put('/:id', async (req, res) => {
 
     if (result['affectedRows'] === 1) {
         res.json({
-            sucess: 'moto actualizada'
+            success: 'Moto actualizada'
         });
     } else {
         res.json({
@@ -80,7 +78,7 @@ router.delete('/:id', async (req, res) => {
         // console.log(result);
 
         res.json({
-            sucess: 'se ha eliminado la moto'
+            success: 'Se ha eliminado una moto'
         });
     } else {
         res.json({
