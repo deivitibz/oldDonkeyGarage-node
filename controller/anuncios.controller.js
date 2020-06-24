@@ -24,17 +24,17 @@ const getById = (anuncioid) => {
 
 const create = ({
     titulo,
-    imagenes = 'https://picsum.photos/200',
     descripcion,
-    km,
-    year,
     provincia,
     poblacion,
-    itv,
-    homologacion,
     precio,
     marca,
+    km,
+    year,
     modelo,
+    itv,
+    homologacion,
+    imagenes,
     usuarios_id
 }) => {
     return new Promise((resolve, reject) => {

@@ -41,7 +41,6 @@ router.post('/upload', function (req, res) {
 // GET http://localhost:3000/api/anuncios
 // obtener todos los anuncios
 router.get('/', (req, res) => {
-    console.log('entra');
 
     Anuncio.getAllAnuncios()
         .then((rows) => {
@@ -67,10 +66,13 @@ router.get('/:id', async (req, res) => {
 // POST http://localhost:3000/api/anuncios
 // crear usuario
 router.post('/', async (req, res) => {
-    const result = await Anuncio.create(req.body);
-    console.log(result);
+    // console.log(req.body);
+    // res.json(req.body)
 
-    res.json(req.body);
+    const result = await Anuncio.create(req.body);
+    // console.log(result);
+
+    res.json(result);
 
 });
 

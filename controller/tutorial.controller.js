@@ -27,11 +27,10 @@ const create = ({
     autor,
     categoria,
     url_video,
-    premium,
     usuarios_id
 }) => {
     return new Promise((resolve, reject) => {
-        db.query('insert into olddonkeygarage.video_tutorial(titulo, descripcion,autor,categoria, url_video, premium, fecha_publicacion, usuarios_id) values(?,?,?,?,?,?,?,?)', [titulo, descripcion, autor, categoria, url_video, premium, new Date(), usuarios_id], (err, result) => {
+        db.query('insert into olddonkeygarage.video_tutorial(titulo, descripcion,autor,categoria, url_video, fecha_publicacion, usuarios_id) values(?,?,?,?,?,?,?)', [titulo, descripcion, autor, categoria, url_video, new Date(), usuarios_id], (err, result) => {
             if (err) reject(err);
             resolve(result);
         });
