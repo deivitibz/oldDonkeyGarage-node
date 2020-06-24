@@ -51,7 +51,7 @@ router.put('/:id', async (req, res) => {
 
     if (result['affectedRows'] === 1) {
         res.json({
-            sucess: 'actualización con éxito'
+            success: 'actualización con éxito'
         });
     } else {
         res.json({
@@ -80,7 +80,7 @@ router.delete('/:id', async (req, res) => {
         // console.log(result);
 
         res.json({
-            sucess: 'se ha eliminado la noticia'
+            success: 'se ha eliminado la noticia'
         });
     } else {
         res.json({

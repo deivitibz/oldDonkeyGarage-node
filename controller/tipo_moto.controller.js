@@ -22,11 +22,11 @@ const getById = (tipoId) => {
 // TODO: CREATE
 
 const create = ({
-    tipo,
-    anuncio_id
+    tipo
+
 }) => {
     return new Promise((resolve, reject) => {
-        db.query('insert into tipo_moto(tipo, anuncio_id) values(?,?)', [tipo, anuncio_id], (err, result) => {
+        db.query('insert into tipo_moto(tipo) values(?)', [tipo], (err, result) => {
             if (err) reject(err);
             resolve(result);
         });
@@ -47,11 +47,11 @@ const deleteById = (tipoId) => {
 // TODO: UPDATEBYID
 
 const updateById = (tipoId, {
-    tipo,
-    anuncio_id
+    tipo
+
 }) => {
     return new Promise((resolve, reject) => {
-        db.query('update olddonkeygarage.tipo_moto set tipo=?, anuncio_id=? where id = ?', [tipo, anuncio_id, tipoId], (err, result) => {
+        db.query('update olddonkeygarage.tipo_moto set tipo=? where id = ?', [tipo, tipoId], (err, result) => {
             if (err) resolve(null);
             resolve(result);
         });
