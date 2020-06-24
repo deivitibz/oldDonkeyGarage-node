@@ -67,8 +67,10 @@ router.get('/:id', async (req, res) => {
 // POST http://localhost:3000/api/anuncios
 // crear usuario
 router.post('/', async (req, res) => {
-    const result = await Anuncio.create(req.body);
-    console.log(result);
+    console.log(req.body);
+    
+    //const result = await Anuncio.create(req.body);
+    //console.log(result);
 
     res.json(req.body);
 

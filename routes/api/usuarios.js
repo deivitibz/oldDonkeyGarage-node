@@ -28,12 +28,15 @@ router.post('/registro', async (req, res) => {
 
 router.post('/login', async (req, res) => {
     const usuario = await Usuario.getByEmail(req.body.email);
+    console.log(usuario);
+    
     if (usuario) {
         const iguales = bcrypt.compareSync(req.body.password, usuario.password);
         if (iguales) {
             res.json({
                 success: 'Login correcto',
-                token: createToken(usuario.id)
+                rol: usuario.rol,
+                token: createToken(usuario.id,usuario.rol)
             });
         } else {
             res.json({
@@ -52,9 +55,10 @@ router.get('/check', (req, res) => {
     res.json(req.payload);
 })
 
-function createToken(userId) {
+function createToken(userId,role) {
     const payload = {
         userId: userId,
+        role: role,
         createdAt: moment().unix(),
         expiredAt: moment().add(60, 'minutes').unix()
     }
