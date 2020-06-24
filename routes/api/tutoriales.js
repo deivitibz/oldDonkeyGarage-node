@@ -10,9 +10,9 @@ const {
 router.get('/', (req, res) => {
     Tutotial.getAllTutorial()
         .then((rows) => {
-            res.json({
+            res.json(
                 rows
-            });
+            );
         })
         .catch(err => {
             res.json({
