@@ -1,6 +1,28 @@
 const router = require('express').Router();
 const Noticia = require('../../controller/noticia.controller')
 
+var express = require('express')
+var multer  = require('multer')
+var upload = multer({ dest: 'uploads/' })
+
+var app = express()
+
+var multer  = require('multer')
+
+var upload = multer({ dest: 'uploads/' })
+app.post('/upload', upload.none(), (req, res, next) => {
+    console.log(req.headers);
+    
+const file = req.file
+if (!file) {
+    const error = new Error('Please upload a file')
+    error.httpStatusCode = 400
+    return next(error)
+}
+    res.send(file)
+
+})
+  
 // GET http://localhost:3000/api/noticias
 // obtener todos las noticias
 router.get('/', (req, res) => {

@@ -70,8 +70,6 @@ function createToken(userId,role) {
 // obtener todos los usuarios
 router.get('/', async (req, res) => {
     const rows = await Usuario.getAllUsers();
-    console.log(rows);
-
     res.json(rows);
 });
 
@@ -84,20 +82,15 @@ router.get('/:id', async (req, res) => {
 // crear usuario
 router.post('/', async (req, res) => {
     const result = await Usuario.create(req.body);
-
     if (result['affectedRows'] === 1) {
-        const user = await Usuario.getByUser(result['insertId']);
         res.json({
             sucess: 'se ha creado un usuario'
         });
-
     } else {
         res.json({
             error: 'algo has liado'
         });
     }
-
-
 });
 
 // PUT http://localhost:3000/api/usuarios
@@ -106,28 +99,23 @@ router.put('/:id', async (req, res) => {
     const result = await Usuario.updateById(req.params.id, req.body);
     if (result['affectedRows'] === 1) {
         res.json({
-            sucess: 'actualización de usuario'
+            sucess: 'actualización de usuario',
+            data: req.body
         });
     } else {
         res.json({
-            error: 'algo has liado'
+            error: 'algo has liado',
+            data: req.body
         })
     }
-
 });
 
 // DELETE http://localhost:3000/api/usuarios
 // borrar usuario
 router.delete('/:id', async (req, res) => {
-    const user = await Usuario.getByUser(req.params.id);
-
-    const result = await Usuario.deleteById(req.params.id, req.body);
+    const result = await Usuario.deleteById(req.params.id);
     console.log(result);
-
-
     if (result['affectedRows'] === 1) {
-
-
         res.json({
             sucess: 'se ha eliminado el usuario'
         });
@@ -136,11 +124,6 @@ router.delete('/:id', async (req, res) => {
             error: 'algo has liado'
         })
     }
-
-    // res.json({
-    //     message: 'usuarios router works'
-    // });
-
 });
 
 

@@ -47,7 +47,7 @@ const getByUser = (userId) => {
 // TODO : GETALLUSERS
 function getAllUsers() {
   return new Promise((resolve, reject) => {
-    db.query("select id,username,email from usuarios", [], (err, rows) => {
+    db.query("select * from usuarios", [], (err, rows) => {
       if (err) reject(err);
       resolve(rows);
     });
@@ -68,7 +68,6 @@ const deleteById = (userId) => {
 const updateById = (userId, {
   username,
   email,
-  password,
   rol,
   nombre,
   apellidos,
@@ -83,7 +82,8 @@ const updateById = (userId, {
   imagenes_constructor
 }) => {
   return new Promise((resolve, reject) => {
-    db.query('update olddonkeygarage.usuarios set username=?, email=?, password=?, rol=?, nombre=?, apellidos=?, direccion=?, localidad=?, provincia=?, nombre_constructor=?, descripcion=?, persona_contacto=?, telefono=?,imagenes_usuario=?, imagenes_constructor=? where  id = ?', [username, email, password, rol, nombre, apellidos, direccion, localidad, provincia, nombre_constructor, descripcion, persona_contacto, telefono, imagenes_usuario, imagenes_constructor, userId], (err, result) => {
+    db.query('update olddonkeygarage.usuarios set username=?, email=?, rol=?, nombre=?, apellidos=?, direccion=?, localidad=?, provincia=?, nombre_constructor=?, descripcion=?, persona_contacto=?, telefono=?,imagenes_usuario=?, imagenes_constructor=? where  id = ?', 
+    [username, email, rol, nombre, apellidos, direccion, localidad, provincia, nombre_constructor, descripcion, persona_contacto, telefono, imagenes_usuario, imagenes_constructor, userId], (err, result) => {
       if (err) resolve(null);
       resolve(result);
     });

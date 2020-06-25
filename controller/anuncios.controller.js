@@ -15,10 +15,20 @@ const getById = (anuncioid) => {
         db.query('select * from olddonkeygarage.anuncio where id = ?', [anuncioid], (err, rows) => {
             if (err) reject(err);
             if (rows.length !== 1) resolve(null);
-            resolve(rows[0])
+            resolve(rows)
         });
     });
 };
+
+const getByUserId = (anuncioid) => {
+    return new Promise((resolve, reject) => {
+        db.query('select * from olddonkeygarage.anuncio where usuarios_id = ?', [anuncioid], (err, rows) => {
+            if (err) reject(err);
+            resolve(rows)
+        });
+    });
+};
+
 
 // TODO: CREATE
 
@@ -91,5 +101,6 @@ module.exports = {
     getById,
     create,
     deleteById,
-    updateById
+    updateById,
+    getByUserId
 }

@@ -34,7 +34,6 @@ app.use(express.urlencoded({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
 // INICIALIZACION DE MODULOS DE RUTAS
 app.use('/api', apiRouter);
 
