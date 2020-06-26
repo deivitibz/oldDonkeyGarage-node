@@ -1,5 +1,8 @@
 const router = require('express').Router();
-const Tutotial = require('../../controller/tutorial.controller');
+const Tutorial = require('../../controller/tutorial.controller');
+const {
+    checkToken
+} = require('../middlewares');
 const {
     route
 } = require('./noticias');
@@ -8,7 +11,7 @@ const {
 // obtener todos las noticias
 
 router.get('/', (req, res) => {
-    Tutotial.getAllTutorial()
+    Tutorial.getAllTutorial()
         .then((rows) => {
             res.json(
                 rows
@@ -26,22 +29,22 @@ router.get('/', (req, res) => {
 // saco una noticia
 
 router.get('/:id', async (req, res) => {
-    const tutorial = await Tutotial.getById(req.params.id);
+    const tutorial = await Tutorial.getById(req.params.id);
     res.json(tutorial);
 });
 
 // POST http://localhost:3000/api/tutoriales
 // creo una noticia
 
-router.post('/', async (req, res) => {
-    const result = await Tutotial.create(req.body);
+router.post('/', checkToken, async (req, res) => {
+    const result = await Tutorial.create(req.body);
     console.log(result);
 
 
     if (result['affectedRows'] === 1) {
-        const tutorial = await Tutotial.getById(result['insertId']);
+        const tutorial = await Tutorial.getById(result['insertId']);
         res.json({
-            sucess: 'se ha creado un tutorial'
+            success: 'se ha creado un tutorial'
         });
     } else {
         res.json({
@@ -53,12 +56,12 @@ router.post('/', async (req, res) => {
 // PUT http://localhost:3000/api/tutoriales/:id
 // editar una noticia
 
-router.put('/:id', async (req, res) => {
-    const result = await Tutotial.updateById(req.params.id, req.body);
+router.put('/:id', checkToken, async (req, res) => {
+    const result = await Tutorial.updateById(req.params.id, req.body);
 
     if (result['affectedRows'] === 1) {
         res.json({
-            sucess: 'actualización de tutorial'
+            success: 'actualización de tutorial'
         });
     } else {
         res.json({
@@ -71,15 +74,15 @@ router.put('/:id', async (req, res) => {
 // editar una noticia
 
 router.delete('/:id', async (req, res) => {
-    const tutorial = await Tutotial.getById(req.params.id);
+    const tutorial = await Tutorial.getById(req.params.id);
 
-    const result = await Tutotial.deleteById(req.params.id, req.body);
+    const result = await Tutorial.deleteById(req.params.id, req.body);
 
     if (result['affectedRows'] === 1) {
         // console.log(result);
 
         res.json({
-            sucess: 'se ha eliminado el tutorial'
+            success: 'se ha eliminado el tutorial'
         });
     } else {
         res.json({

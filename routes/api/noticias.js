@@ -1,28 +1,35 @@
 const router = require('express').Router();
 const Noticia = require('../../controller/noticia.controller')
+const {
+    checkToken
+} = require('../middlewares');
 
 var express = require('express')
-var multer  = require('multer')
-var upload = multer({ dest: 'uploads/' })
+var multer = require('multer')
+var upload = multer({
+    dest: 'uploads/'
+})
 
 var app = express()
 
-var multer  = require('multer')
+var multer = require('multer')
 
-var upload = multer({ dest: 'uploads/' })
+var upload = multer({
+    dest: 'uploads/'
+})
 app.post('/upload', upload.none(), (req, res, next) => {
     console.log(req.headers);
-    
-const file = req.file
-if (!file) {
-    const error = new Error('Please upload a file')
-    error.httpStatusCode = 400
-    return next(error)
-}
+
+    const file = req.file
+    if (!file) {
+        const error = new Error('Please upload a file')
+        error.httpStatusCode = 400
+        return next(error)
+    }
     res.send(file)
 
 })
-  
+
 // GET http://localhost:3000/api/noticias
 // obtener todos las noticias
 router.get('/', (req, res) => {
@@ -49,7 +56,7 @@ router.get('/:id', async (req, res) => {
 
 // POST http://localhost:3000/api/noticias
 // crear noticia
-router.post('/', async (req, res) => {
+router.post('/', checkToken, async (req, res) => {
     const result = await Noticia.create(req.body);
 
 
@@ -68,7 +75,7 @@ router.post('/', async (req, res) => {
 
 // PUT http://localhost:3000/api/noticias
 // editar noticia
-router.put('/:id', async (req, res) => {
+router.put('/:id', checkToken, async (req, res) => {
     const result = await Noticia.updateById(req.params.id, req.body);
 
     if (result['affectedRows'] === 1) {
@@ -88,7 +95,7 @@ router.put('/:id', async (req, res) => {
 
 // DELETE http://localhost:3000/api/noticias
 // borrar noticia
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', checkToken, async (req, res) => {
 
     const noticia = await Noticia.getById(req.params.id);
     // console.log(noticia);
