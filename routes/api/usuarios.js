@@ -76,7 +76,7 @@ function createToken(userId, role) {
         userId: userId,
         role: role,
         createdAt: moment().unix(),
-        expiredAt: moment().add(1, 'minutes').unix()
+        expiredAt: moment().add(15, 'minutes').unix()
     }
     return jwt.sign(payload, process.env.SECRET_KEY)
 }
@@ -133,7 +133,7 @@ router.delete('/:id', checkToken, async (req, res) => {
     console.log(result);
     if (result['affectedRows'] === 1) {
         res.json({
-            success: 'se ha eliminado el usuario'
+            success: 'Se ha eliminado el usuario'
         });
     } else {
         res.json({

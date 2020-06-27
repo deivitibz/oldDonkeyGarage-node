@@ -2,7 +2,7 @@ const create = ({
   username,
   email,
   password,
-  rol = "usuario"
+  rol = "Usuario"
 }) => {
   return new Promise((resolve, reject) => {
     db.query(
@@ -82,11 +82,11 @@ const updateById = (userId, {
   imagenes_constructor
 }) => {
   return new Promise((resolve, reject) => {
-    db.query('update olddonkeygarage.usuarios set username=?, email=?, rol=?, nombre=?, apellidos=?, direccion=?, localidad=?, provincia=?, nombre_constructor=?, descripcion=?, persona_contacto=?, telefono=?,imagenes_usuario=?, imagenes_constructor=? where  id = ?', 
-    [username, email, rol, nombre, apellidos, direccion, localidad, provincia, nombre_constructor, descripcion, persona_contacto, telefono, imagenes_usuario, imagenes_constructor, userId], (err, result) => {
-      if (err) resolve(null);
-      resolve(result);
-    });
+    db.query('update olddonkeygarage.usuarios set username=?, email=?, rol=?, nombre=?, apellidos=?, direccion=?, localidad=?, provincia=?, nombre_constructor=?, descripcion=?, persona_contacto=?, telefono=?,imagenes_usuario=?, imagenes_constructor=? where  id = ?',
+      [username, email, rol, nombre, apellidos, direccion, localidad, provincia, nombre_constructor, descripcion, persona_contacto, telefono, imagenes_usuario, imagenes_constructor, userId], (err, result) => {
+        if (err) resolve(null);
+        resolve(result);
+      });
   });
 };
 
