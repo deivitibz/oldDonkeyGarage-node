@@ -2,7 +2,7 @@ const create = ({
   username,
   email,
   password,
-  rol = "usuario"
+  rol = "Usuario"
 }) => {
   return new Promise((resolve, reject) => {
     db.query(

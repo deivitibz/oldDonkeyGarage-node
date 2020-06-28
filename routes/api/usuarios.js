@@ -134,7 +134,7 @@ router.delete('/:id', checkToken, async (req, res) => {
     console.log(result);
     if (result['affectedRows'] === 1) {
         res.json({
-            success: 'se ha eliminado el usuario'
+            success: 'Se ha eliminado el usuario'
         });
     } else {
         res.json({
