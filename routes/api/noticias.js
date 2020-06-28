@@ -1,25 +1,14 @@
 const router = require('express').Router();
 const Noticia = require('../../controller/noticia.controller')
-const {
-    checkToken
-} = require('../middlewares');
-
+const { checkToken } = require('../middlewares');
 var express = require('express')
 var multer = require('multer')
-var upload = multer({
-    dest: 'uploads/'
-})
-
+var upload = multer({dest: 'uploads/'})
 var app = express()
-
 var multer = require('multer')
+var upload = multer({dest: 'uploads/'})
 
-var upload = multer({
-    dest: 'uploads/'
-})
 app.post('/upload', upload.none(), (req, res, next) => {
-    console.log(req.headers);
-
     const file = req.file
     if (!file) {
         const error = new Error('Please upload a file')
@@ -77,15 +66,12 @@ router.post('/', checkToken, async (req, res) => {
 // editar noticia
 router.put('/:id', checkToken, async (req, res) => {
     const result = await Noticia.updateById(req.params.id, req.body);
-
+    console.log(result);
+    
     if (result['affectedRows'] === 1) {
-        res.json({
-            success: 'actualización con éxito'
-        });
+        res.json({success: 'Se a actualizado una noticia'});
     } else {
-        res.json({
-            error: 'algo has liado'
-        })
+        res.json({error: 'algo has liado'})
     }
     // res.json({
     //     message: 'noticias router works'

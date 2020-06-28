@@ -44,13 +44,13 @@ const create = ({
     modelo,
     itv,
     homologacion,
-    imagenes,
+    imagen_id,
     usuarios_id
 }) => {
     return new Promise((resolve, reject) => {
         db.query(
-            'insert into olddonkeygarage.anuncio (titulo, imagenes, descripcion, km, year,  provincia, poblacion, itv, homologacion, fecha_publicacion, precio, marca, modelo, usuarios_id) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
-            [titulo, imagenes, descripcion, km, year, provincia, poblacion, itv, homologacion, new Date(), precio, marca, modelo, usuarios_id],
+            'insert into olddonkeygarage.anuncio (titulo, imagen_id, descripcion, km, year,  provincia, poblacion, itv, homologacion, fecha_publicacion, precio, marca, modelo, usuarios_id) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
+            [titulo, imagen_id, descripcion, km, year, provincia, poblacion, itv, homologacion, new Date(), precio, marca, modelo, usuarios_id],
             (err, result) => {
                 if (err) reject(err);
                 resolve(result);
@@ -74,7 +74,7 @@ const deleteById = (anuncioId) => {
 //TODO: UPDATEBYID
 const updateById = (pAnuncioId, {
     titulo,
-    imagenes,
+    imagen_id,
     descripcion,
     km,
     year,
@@ -88,8 +88,8 @@ const updateById = (pAnuncioId, {
     usuarios_id
 }) => {
     return new Promise((resolve, reject) => {
-        db.query('update olddonkeygarage.anuncio set titulo=?, imagenes = ?, descripcion = ?, km = ?, year = ?, provincia = ?, poblacion = ?, itv = ?, homologacion = ?, fecha_publicacion = ?, precio = ?, marca = ?, modelo = ?, usuarios_id = ? where id = ?', [titulo, imagenes, descripcion, km, year, provincia, poblacion, itv, homologacion, new Date(), precio, marca, modelo, usuarios_id, pAnuncioId], (err, result) => {
-            if (err) resolve(null);
+        db.query('update olddonkeygarage.anuncio set titulo=?, imagen_id = ?, descripcion = ?, km = ?, year = ?, provincia = ?, poblacion = ?, itv = ?, homologacion = ?, fecha_publicacion = ?, precio = ?, marca = ?, modelo = ?, usuarios_id = ? where id = ?', [titulo, imagen_id, descripcion, km, year, provincia, poblacion, itv, homologacion, new Date(), precio, marca, modelo, usuarios_id, pAnuncioId], (err, result) => {
+            if (err) resolve(err);
             resolve(result);
         });
     });

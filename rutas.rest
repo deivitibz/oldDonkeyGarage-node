@@ -83,3 +83,39 @@ GET http://localhost:3000/api/motos
 
 ###
 POST http://pikukoiptv.zapto.org:25500/api.php
+###
+GET  http://localhost:3000/api/anuncios
+user-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIzLCJyb2xlIjoiQ29uc3RydWN0b3IiLCJjcmVhdGVkQXQiOjE1OTMzMDczNDEsImV4cGlyZWRBdCI6MTU5MzMxMDk0MSwiaWF0IjoxNTkzMzA3MzQxfQ.W87vAxIqMfF_X7GMzPZvAadVdtXDJr_5BgxqfcLv5WY
+
+###
+PUT http://localhost:3000/api/usuarios/52
+Content-Type: application/json
+user-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIzLCJyb2xlIjoiQ29uc3RydWN0b3IiLCJjcmVhdGVkQXQiOjE1OTMzMDczNDEsImV4cGlyZWRBdCI6MTU5MzMxMDk0MSwiaWF0IjoxNTkzMzA3MzQxfQ.W87vAxIqMfF_X7GMzPZvAadVdtXDJr_5BgxqfcLv5WY
+
+{   
+    "username": "pepito",
+    "email": "deivit@deivit.es",
+    "password": "12345"
+}
+
+###
+PUT http://localhost:3000/api/anuncios/1
+Content-Type: application/json
+user-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIzLCJyb2xlIjoiQ29uc3RydWN0b3IiLCJjcmVhdGVkQXQiOjE1OTMzNjAyMjYsImV4cGlyZWRBdCI6MTU5MzM2MzgyNiwiaWF0IjoxNTkzMzYwMjI2fQ.mys_tbk5HYwV_8I3J4ZtRLS0y5KvtqyD-onjn_pXNOA
+
+  {
+    "titulo": "vendo moto",
+    "descripcion": "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.",
+    "km": 7500,
+    "year": 1995,
+    "provincia": "Denia",
+    "poblacion": "Alicante",
+    "itv": 1,
+    "homologacion": 1,
+    "fecha_publicacion": "2020-06-22T13:25:05.000Z",
+    "precio": 7300,
+    "marca": "Aprilia",
+    "modelo": "Shiver",
+    "usuarios_id": null,
+    "imagen_id": ""
+  },

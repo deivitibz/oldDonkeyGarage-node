@@ -55,12 +55,11 @@ const updateById = (tutorialId, {
     autor,
     categoria,
     url_video,
-    premium,
     usuarios_id
 }) => {
     return new Promise((resolve, reject) => {
-        db.query('update olddonkeygarage.video_tutorial set titulo=?, descripcion=?, autor=?, categoria=?, url_video=?, premium=?, fecha_publicacion=?, usuarios_id=? where id = ?', [titulo, descripcion, autor, categoria, url_video, premium, new Date(), usuarios_id, tutorialId], (err, result) => {
-            if (err) resolve(null);
+        db.query('update olddonkeygarage.video_tutorial set titulo=?, descripcion=?, autor=?, categoria=?, url_video=?, fecha_publicacion=?, usuarios_id=? where id = ?', [titulo, descripcion, autor, categoria, url_video, new Date(), usuarios_id, tutorialId], (err, result) => {
+            if (err) resolve(err);
             resolve(result);
         });
     });

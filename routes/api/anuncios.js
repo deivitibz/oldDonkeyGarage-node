@@ -23,7 +23,6 @@ router.post('/upload', multipartMiddleware, (req, res) => {
 // GET http://localhost:3000/api/anuncios
 // obtener todos los anuncios
 router.get('/', (req, res) => {
-
     Anuncio.getAllAnuncios()
         .then((rows) => {
             res.json(rows);
@@ -33,9 +32,6 @@ router.get('/', (req, res) => {
                 error: err.message
             })
         })
-    // res.json({
-    //     message: 'entra en en api anuncios'
-    // })
 });
 
 // GET http://localhost:3000/api/anuncios/:id
@@ -56,36 +52,22 @@ router.get('/getbyuser/:id', checkToken, async (req, res) => {
 // POST http://localhost:3000/api/anuncios
 // crear usuario
 router.post('/', checkToken, async (req, res) => {
-
     const result = await Anuncio.create(req.body);
-
     if (result['affectedRows'] === 1) {
-        res.json({
-            success: 'Se a creado un anuncio'
-        });
+        res.json({success: 'Se a creado un anuncio'});
     } else {
-        res.json({
-            error: 'algo has liado'
-        })
+        res.json({error: 'algo has liado'});
     }
-
 });
 
 // PUT http://localhost:3000/api/anuncios/:id
 // editar anuncio
 router.put('/:id', checkToken, async (req, res) => {
     const result = await Anuncio.updateById(req.params.id, req.body);
-    console.log(result);
-    console.log(req.body);
-
     if (result['affectedRows'] === 1) {
-        res.json({
-            success: 'actualizado el anuncios'
-        });
+        res.json({success: 'Anuncio actualizado correctamente'});
     } else {
-        res.json({
-            error: 'algo has liado'
-        })
+        res.json({error: 'algo has liado'})
     }
 
 
@@ -98,13 +80,9 @@ router.delete('/:id', checkToken, async (req, res) => {
     console.log(anuncio);
     const result = await Anuncio.deleteById(req.params.id, req.body);
     if (result['affectedRows'] === 1) {
-        res.json({
-            success: 'Se ha eliminado el anuncio'
-        })
+        res.json({success: 'Se ha eliminado el anuncio'})
     } else {
-        res.json({
-            error: 'algo has liado'
-        })
+        res.json({error: 'algo has liado'})
     }
 
 });

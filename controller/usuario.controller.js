@@ -1,9 +1,4 @@
-const create = ({
-  username,
-  email,
-  password,
-  rol = "Usuario"
-}) => {
+const create = ({username,email,password,rol = "Usuario"}) => {
   return new Promise((resolve, reject) => {
     db.query(
       "insert into usuarios (username, email,password,rol) values(?,?,?,?)",
@@ -32,10 +27,7 @@ const getByEmail = (email) => {
 
 const getByUser = (userId) => {
   return new Promise((resolve, reject) => {
-    db.query(
-      "select * from usuarios where id = ?",
-      [userId],
-      (err, rows) => {
+    db.query("select * from usuarios where id = ?",[userId],(err, rows) => {
         if (err) reject(err);
         if (rows.length !== 1) resolve(null);
         resolve(rows[0]);
@@ -65,26 +57,22 @@ const deleteById = (userId) => {
 };
 
 // TODO: UPDATEBYID
-const updateById = (userId, {
-  username,
-  password,
-  email,
-  rol,
-  nombre,
-  apellidos,
-  direccion,
-  localidad,
-  provincia,
-  nombre_constructor,
-  descripcion,
-  persona_contacto,
-  telefono,
-  imagenes_usuario,
-  imagenes_constructor
+const updateById = (userId, {username,password,email,rol,nombre,apellidos,direccion,localidad,provincia,nombre_constructor,descripcion,persona_contacto,telefono,imagenes_usuario,imagenes_constructor
 }) => {
   return new Promise((resolve, reject) => {
     db.query('update olddonkeygarage.usuarios set username=?, password=?, email=?, rol=?, nombre=?, apellidos=?, direccion=?, localidad=?, provincia=?, nombre_constructor=?, descripcion=?, persona_contacto=?, telefono=?,imagenes_usuario=?, imagenes_constructor=? where  id = ?', 
     [username,password, email, rol, nombre, apellidos, direccion, localidad, provincia, nombre_constructor, descripcion, persona_contacto, telefono, imagenes_usuario, imagenes_constructor, userId], (err, result) => {
+      if (err) resolve(null);
+      resolve(result);
+    });
+  });
+};
+
+const updatePerfil = (userId, {nombre,apellidos,direccion,localidad,provincia,nombre_constructor,descripcion,persona_contacto,telefono,imagenes_usuario,imagenes_constructor
+}) => {
+  return new Promise((resolve, reject) => {
+    db.query('update olddonkeygarage.usuarios set nombre=?, apellidos=?, direccion=?, localidad=?, provincia=?, nombre_constructor=?, descripcion=?, persona_contacto=?, telefono=?,imagenes_usuario=?, imagenes_constructor=? where  id = ?', 
+    [nombre, apellidos, direccion, localidad, provincia, nombre_constructor, descripcion, persona_contacto, telefono, imagenes_usuario, imagenes_constructor, userId], (err, result) => {
       if (err) resolve(null);
       resolve(result);
     });
@@ -97,5 +85,6 @@ module.exports = {
   getByUser,
   getAllUsers,
   deleteById,
-  updateById
+  updateById,
+  updatePerfil
 };

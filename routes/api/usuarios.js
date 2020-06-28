@@ -12,20 +12,20 @@ const Usuario = require('../../controller/usuario.controller');
 // TODO: registrar usuario
 
 router.post('/registro', async (req, res) => {
-    req.body.password = bcrypt.hashSync(req.body.password, 10);
-    const result = await Usuario.create(req.body);
-
-    if (result['affectedRows'] === 1) {
-        res.json({
-            success: 'Registro Correcto'
-        });
+    let emailCheck = req.body.email;
+    let getEmail = await Usuario.getByEmail(emailCheck);
+    if(getEmail !== null){
+        res.json({error: 'El email ya existe en la base de datos'});
     } else {
-        res.json({
-            error: 'Error en el registro'
-        })
+        req.body.password = bcrypt.hashSync(req.body.password, 10);
+        const result = await Usuario.create(req.body);
+        if (result['affectedRows'] === 1) {
+            res.json({success: 'Registro Correcto'});
+        } else {
+            res.json({error: 'Error en el registro'})
+        }
+        res.json(req.body)
     }
-
-    res.json(req.body)
 });
 
 // TODO: loguear usuario
@@ -37,20 +37,12 @@ router.post('/login', async (req, res) => {
     if (usuario) {
         const iguales = bcrypt.compareSync(req.body.password, usuario.password);
         if (iguales) {
-            res.json({
-                success: 'Login correcto',
-                rol: usuario.rol,
-                token: createToken(usuario.id, usuario.rol)
-            });
+            res.json({success: 'Login correcto',rol: usuario.rol,token: createToken(usuario.id, usuario.rol)});
         } else {
-            res.json({
-                error: 'Error en email y/o password'
-            });
+            res.json({error: 'Error en email y/o password'});
         }
     } else {
-        res.json({
-            error: 'Error en email y/o password'
-        });
+        res.json({error: 'Error en email y/o password'});
     }
 });
 
@@ -99,13 +91,9 @@ router.get('/:id', checkToken, async (req, res) => {
 router.post('/', checkToken, async (req, res) => {
     const result = await Usuario.create(req.body);
     if (result['affectedRows'] === 1) {
-        res.json({
-            success: 'se ha creado un usuario'
-        });
+        res.json({success: 'Se ha creado un usuario'});
     } else {
-        res.json({
-            error: 'algo has liado'
-        });
+        res.json({error: 'algo has liado'});
     }
 });
 
@@ -115,15 +103,18 @@ router.put('/:id', checkToken, async (req, res) => {
     req.body.password = bcrypt.hashSync(req.body.password, 10);
     const result = await Usuario.updateById(req.params.id, req.body);
     if (result['affectedRows'] === 1) {
-        res.json({
-            success: 'actualización de usuario',
-            data: req.body
-        });
+        res.json({success: 'Actualización de usuario',data: req.body});
     } else {
-        res.json({
-            error: 'algo has liado',
-            data: req.body
-        })
+        res.json({error: 'algo has liado',data: req.body})
+    }
+});
+
+router.put('/update/:id', checkToken, async (req, res) => {
+    const result = await Usuario.updatePerfil(req.params.id, req.body);
+    if (result['affectedRows'] === 1) {
+        res.json({success: 'Actualización de usuario',data: req.body});
+    } else {
+        res.json({error: 'algo has liado',data: req.body})
     }
 });
 
@@ -133,13 +124,9 @@ router.delete('/:id', checkToken, async (req, res) => {
     const result = await Usuario.deleteById(req.params.id);
     console.log(result);
     if (result['affectedRows'] === 1) {
-        res.json({
-            success: 'Se ha eliminado el usuario'
-        });
+        res.json({success: 'Se ha eliminado el usuario'});
     } else {
-        res.json({
-            error: 'algo has liado'
-        })
+        res.json({error: 'algo has liado'})
     }
 });
 

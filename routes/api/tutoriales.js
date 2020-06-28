@@ -13,14 +13,10 @@ const {
 router.get('/', (req, res) => {
     Tutorial.getAllTutorial()
         .then((rows) => {
-            res.json(
-                rows
-            );
+            res.json(rows);
         })
         .catch(err => {
-            res.json({
-                error: err.message
-            });
+            res.json({error: err.message});
         });
 
 });
@@ -38,18 +34,11 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', checkToken, async (req, res) => {
     const result = await Tutorial.create(req.body);
-    console.log(result);
-
-
     if (result['affectedRows'] === 1) {
         const tutorial = await Tutorial.getById(result['insertId']);
-        res.json({
-            success: 'se ha creado un tutorial'
-        });
+        res.json({success: 'Se ha creado un tutorial'});
     } else {
-        res.json({
-            error: 'algo has liado'
-        });
+        res.json({error: 'algo has liado'});
     }
 });
 
@@ -58,15 +47,10 @@ router.post('/', checkToken, async (req, res) => {
 
 router.put('/:id', checkToken, async (req, res) => {
     const result = await Tutorial.updateById(req.params.id, req.body);
-
     if (result['affectedRows'] === 1) {
-        res.json({
-            success: 'actualización de tutorial'
-        });
+        res.json({success: 'Actualización de tutorial'});
     } else {
-        res.json({
-            error: 'algo has liado'
-        });
+        res.json({error: 'algo has liado'});
     }
 });
 
@@ -75,19 +59,11 @@ router.put('/:id', checkToken, async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
     const tutorial = await Tutorial.getById(req.params.id);
-
     const result = await Tutorial.deleteById(req.params.id, req.body);
-
     if (result['affectedRows'] === 1) {
-        // console.log(result);
-
-        res.json({
-            success: 'se ha eliminado el tutorial'
-        });
+        res.json({success: 'se ha eliminado el tutorial'});
     } else {
-        res.json({
-            error: 'algo has liado'
-        });
+        res.json({error: 'algo has liado'});
     }
 });
 

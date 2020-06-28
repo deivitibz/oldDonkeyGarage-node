@@ -60,7 +60,7 @@ const updateById = (noticiaId, {
 }) => {
     return new Promise((resolve, reject) => {
         db.query('update olddonkeygarage.noticia set titulo=?, descripcion=?, autor=?, categoria=?, imagen=?, fecha_publicacion=?, usuarios_id=? where id = ?', [titulo, descripcion, autor, categoria, imagen, new Date(), usuarios_id, noticiaId], (err, result) => {
-            if (err) resolve(null);
+            if (err) resolve(err);
             resolve(result);
         });
     });
