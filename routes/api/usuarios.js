@@ -76,7 +76,7 @@ function createToken(userId, role) {
         userId: userId,
         role: role,
         createdAt: moment().unix(),
-        expiredAt: moment().add(1, 'minutes').unix()
+        expiredAt: moment().add(60, 'minutes').unix()
     }
     return jwt.sign(payload, process.env.SECRET_KEY)
 }
@@ -112,6 +112,7 @@ router.post('/', checkToken, async (req, res) => {
 // PUT http://localhost:3000/api/usuarios
 // editar usuario
 router.put('/:id', checkToken, async (req, res) => {
+    req.body.password = bcrypt.hashSync(req.body.password, 10);
     const result = await Usuario.updateById(req.params.id, req.body);
     if (result['affectedRows'] === 1) {
         res.json({

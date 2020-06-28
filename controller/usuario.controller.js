@@ -67,6 +67,7 @@ const deleteById = (userId) => {
 // TODO: UPDATEBYID
 const updateById = (userId, {
   username,
+  password,
   email,
   rol,
   nombre,
@@ -82,8 +83,8 @@ const updateById = (userId, {
   imagenes_constructor
 }) => {
   return new Promise((resolve, reject) => {
-    db.query('update olddonkeygarage.usuarios set username=?, email=?, rol=?, nombre=?, apellidos=?, direccion=?, localidad=?, provincia=?, nombre_constructor=?, descripcion=?, persona_contacto=?, telefono=?,imagenes_usuario=?, imagenes_constructor=? where  id = ?', 
-    [username, email, rol, nombre, apellidos, direccion, localidad, provincia, nombre_constructor, descripcion, persona_contacto, telefono, imagenes_usuario, imagenes_constructor, userId], (err, result) => {
+    db.query('update olddonkeygarage.usuarios set username=?, password=?, email=?, rol=?, nombre=?, apellidos=?, direccion=?, localidad=?, provincia=?, nombre_constructor=?, descripcion=?, persona_contacto=?, telefono=?,imagenes_usuario=?, imagenes_constructor=? where  id = ?', 
+    [username,password, email, rol, nombre, apellidos, direccion, localidad, provincia, nombre_constructor, descripcion, persona_contacto, telefono, imagenes_usuario, imagenes_constructor, userId], (err, result) => {
       if (err) resolve(null);
       resolve(result);
     });
