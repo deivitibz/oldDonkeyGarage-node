@@ -1,14 +1,5 @@
 
-const uploadFileUser = ({
-    originalname,
-    mimetype,
-    filename,
-    path,
-    size,
-    userId,
-    anuncioId,
-    noticiaId
-}) => {
+const uploadFileUser = ({originalname,mimetype,filename,path,size,userId,anuncioId,noticiaId}) => {
     //console.log(originalName,mimetype,filename,path,size,userId);
     
     return new Promise ((resolve,reject) => {

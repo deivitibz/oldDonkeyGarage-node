@@ -36,7 +36,7 @@ router.get('/', (req, res) => {
 
 // GET http://localhost:3000/api/anuncios/:id
 // obtener un anuncio
-router.get('/:id', checkToken, async (req, res) => {
+router.get('/:id', async (req, res) => {
     const anuncio = await Anuncio.getById(req.params.id);
     res.json(anuncio[0])
 
@@ -48,6 +48,11 @@ router.get('/getbyuser/:id', checkToken, async (req, res) => {
     res.json(anuncio)
 })
 
+// Obtiene los anuncios por categoria 
+router.get('/getbycategoria/:categoria',async(req,res)=>{
+    const resultado = await Anuncio.getByCategory(req.params.categoria)
+    res.json(resultado);
+})
 
 // POST http://localhost:3000/api/anuncios
 // crear usuario
@@ -64,6 +69,8 @@ router.post('/', checkToken, async (req, res) => {
 // editar anuncio
 router.put('/:id', checkToken, async (req, res) => {
     const result = await Anuncio.updateById(req.params.id, req.body);
+    console.log(req.body);
+    
     if (result['affectedRows'] === 1) {
         res.json({success: 'Anuncio actualizado correctamente'});
     } else {

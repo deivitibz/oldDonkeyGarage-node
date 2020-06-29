@@ -72,10 +72,38 @@ Content-Type: application/json
 
 
 ###
-GET http://localhost:3000/api/anuncios
+GET http://localhost:3000/api/anuncios/1
+user-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIzLCJyb2xlIjoiQWRtaW4iLCJjcmVhdGVkQXQiOjE1OTMzODU1OTgsImV4cGlyZWRBdCI6MTU5MzM4OTE5OCwiaWF0IjoxNTkzMzg1NTk4fQ.Dv0D1Q6VuRyZvX3UARSLFNxbJhQoj3IXWnEFhV3AXxY
+
+###
+PUT http://localhost:3000/api/anuncios/1
+Content-Type: application/json
+user-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIzLCJyb2xlIjoiQWRtaW4iLCJjcmVhdGVkQXQiOjE1OTMzODU1OTgsImV4cGlyZWRBdCI6MTU5MzM4OTE5OCwiaWF0IjoxNTkzMzg1NTk4fQ.Dv0D1Q6VuRyZvX3UARSLFNxbJhQoj3IXWnEFhV3AXxY
+
+{
+  "titulo": "vendo",
+  "descripcion": "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.",
+  "km": 7500,
+  "year": 1995,
+  "provincia": "Denia",
+  "poblacion": "Alicante",
+  "itv": 1,
+  "homologacion": 1,
+  "fecha_publicacion": "2020-06-28T23:32:28.000Z",
+  "precio": 7300,
+  "marca": "Aprilia",
+  "modelo": "Shiver",
+  "usuarios_id": 23,
+  "imagen_id": null,
+  "categoria": "bobber"
+}
 
 ###
 GET http://localhost:3000/api/perfil
+
+###
+GET http://localhost:3000/api/anuncios/getbycategoria/bobber
+user-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIzLCJyb2xlIjoiQWRtaW4iLCJjcmVhdGVkQXQiOjE1OTMzODU1OTgsImV4cGlyZWRBdCI6MTU5MzM4OTE5OCwiaWF0IjoxNTkzMzg1NTk4fQ.Dv0D1Q6VuRyZvX3UARSLFNxbJhQoj3IXWnEFhV3AXxY
 
 ###
 GET http://localhost:3000/api/motos
@@ -84,7 +112,7 @@ GET http://localhost:3000/api/motos
 ###
 POST http://pikukoiptv.zapto.org:25500/api.php
 ###
-GET  http://localhost:3000/api/anuncios
+GET  http://localhost:3000/api/tutoriales
 user-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIzLCJyb2xlIjoiQ29uc3RydWN0b3IiLCJjcmVhdGVkQXQiOjE1OTMzMDczNDEsImV4cGlyZWRBdCI6MTU5MzMxMDk0MSwiaWF0IjoxNTkzMzA3MzQxfQ.W87vAxIqMfF_X7GMzPZvAadVdtXDJr_5BgxqfcLv5WY
 
 ###
@@ -118,4 +146,19 @@ user-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIzLCJyb2xlIjoiQ29
     "modelo": "Shiver",
     "usuarios_id": null,
     "imagen_id": ""
-  },
+  }
+
+### 
+PUT http://localhost:3000/api/tutoriales/1
+Content-Type: application/json
+user-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIzLCJyb2xlIjoiQ29uc3RydWN0b3IiLCJjcmVhdGVkQXQiOjE1OTMzNjM5OTUsImV4cGlyZWRBdCI6MTU5MzM2NzU5NSwiaWF0IjoxNTkzMzYzOTk1fQ.lctmGNgOF_VWL__dClEnFBvT05WSD0rLVUr1skOnobI
+
+{
+    "titulo": "trucutru",
+    "descripcion": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tenetur perspiciatis, aperiam, magnam suscipit ut omnis id itaque rerum maxime perferendis laborum cum quasi modi sed ad praesentium. Blanditiis ipsum necessitatibus atque repellat, pariatur ab delectus officiis iure maxime iste nisi!c ",
+    "autor": "Perico Palotes",
+    "categoria": "electricidad",
+    "url_video": "SAASD",
+    "fecha_publicacion": "2020-06-25T09:16:59.000Z",
+    "usuarios_id": null
+  }

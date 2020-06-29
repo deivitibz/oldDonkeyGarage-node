@@ -16,23 +16,16 @@ app.post('/upload', upload.none(), (req, res, next) => {
         return next(error)
     }
     res.send(file)
-
 })
 
 // GET http://localhost:3000/api/noticias
 // obtener todos las noticias
 router.get('/', (req, res) => {
-    // console.log('entra');
     Noticia.getAllNoticias()
-        .then((rows) => {
-            res.json(rows);
-        })
+        .then((rows) => { res.json(rows)})
         .catch(err => {
-            res.json({
-                error: err.message
-            });
+            res.json({error: err.message})
         });
-
 });
 // GET http://localhost:3000/api/noticias/id
 // saco una noticia
@@ -47,8 +40,6 @@ router.get('/:id', async (req, res) => {
 // crear noticia
 router.post('/', checkToken, async (req, res) => {
     const result = await Noticia.create(req.body);
-
-
     if (result['affectedRows'] === 1) {
         const noticia = await Noticia.getById(result['insertId']);
         res.json({
