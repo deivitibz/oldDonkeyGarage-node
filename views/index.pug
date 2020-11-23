@@ -1,5 +1,29 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  header
+    .container
+      ul.nav.nav-pils
+        li.nav-item
+          img(src="http://localhost:3000/images/log-sm-n.png", alt="")
+        li.nav-item.dropdown
+          a.nav-link.dropdown-togle(href="#", data-toggle="dropdown", role="button", aria-hasspopup="true", aria-expanded="false") Usuarios
+            a.dropdown-item(href="/admin/users") Add User
+          .dropdown-menu
+            a.dropdown-item(href="/admin/users") List Users
+        li.nav-item
+          a.nav-link.dropdown-togle(href="#", data-toggle="dropdown", role="button", aria-hasspopup="true", aria-expanded="false") Anuncios
+          .dropdown-menu
+            a.dropdown-item(href="/admin/anuncios") Add Anuncio
+            a.dropdown-item(href="/admin/anuncios") List Anuncios
+        li.nav-item
+          a.nav-link.dropdown-togle(href="#", data-toggle="dropdown", role="button", aria-hasspopup="true", aria-expanded="false") Noticias
+          .dropdown-menu
+            a.dropdown-item(href="#") Add Noticia
+            a.dropdown-item(href="#") List Noticias
+        li.nav-item
+          a.nav-link.dropdown-togle(href="#", data-toggle="dropdown", role="button", aria-hasspopup="true", aria-expanded="false") Tutoriales
+          .dropdown-menu
+            a.dropdown-item(href="#") Add Tutorial
+            a.dropdown-item(href="#") List Tutoriales
+    block section

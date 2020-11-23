@@ -16,11 +16,13 @@ const checkToken = (req, res, next) => {
     let payload = {};
     try {
         payload = jwt.verify(userToken, process.env.SECRET_KEY)
+        console.log(payload);
     } catch (err) {
-        console.log(err);
+        console.log(err.message);
         return res.json({
             error: 'El token no es correcto',
-            error_type: 'errorToken'
+            error_type: 'errorToken',
+            message: err.message
         });
     }
 
@@ -41,6 +43,7 @@ const checkToken = (req, res, next) => {
 
 const isAdmin = async (req, res, next) => {
     const usuario = await Usuario.getByUser(req.payload.userId)
+    next()
 }
 
 

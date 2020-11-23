@@ -46,9 +46,10 @@ router.post('/login', async (req, res) => {
     }
 });
 
-router.get('/check', checkToken, (req, res) => {
+router.get('/getToken',  (req, res) => {
 
-
+    const token = createToken(1,'Admin')
+    res.json(token)
     // console.log(req.headers['user-token']);
     // res.json(req.payload);
 })

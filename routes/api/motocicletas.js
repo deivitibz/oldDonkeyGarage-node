@@ -1,9 +1,10 @@
 const router = require('express').Router();
 const TipoMoto = require('../../controller/tipo_moto.controller');
+const {checkToken} = require('../middlewares');
 
 // GET http://localhost:3000/api/motos
 // obtener todos las motos
-router.get('/', (req, res) => {
+router.get('/', checkToken, (req, res) => {
     TipoMoto.getAllTipos()
         .then((rows) => {
             res.json(rows)

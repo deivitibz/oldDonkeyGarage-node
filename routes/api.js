@@ -15,7 +15,7 @@ router.use('/upload', apiUploadRouter);
 router.use('/noticias', apiNoticiasRouter);
 router.use('/usuarios', apiUsuariosRouter);
 router.use('/anuncios', apiAnunciosRouter);
-router.use('/motos', apiMotosRouter);
+router.use('/motos', checkToken, apiMotosRouter);
 router.use('/tutoriales', apiTutorialesRouter);
 
 

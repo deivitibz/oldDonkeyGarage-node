@@ -42,7 +42,7 @@ const getByCategory = (categoria) => {
 
 // TODO: CREATE
 
-const create = ({titulo,descripcion,categoria,provincia,poblacion,precio,marca,km,year,modelo,itv,homologacion,imagen_id,usuarios_id}) => {
+const create = ({titulo,descripcion,categoria,provincia,poblacion,precio,marca,km,year,modelo,itv = false,homologacion = false,imagen_id = 'noimage.jpg',usuarios_id}) => {
     return new Promise((resolve, reject) => {
         db.query(
             'insert into olddonkeygarage.anuncio (titulo, imagen_id, descripcion, categoria, km, year,  provincia, poblacion, itv, homologacion, fecha_publicacion, precio, marca, modelo, usuarios_id) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)',

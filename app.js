@@ -8,11 +8,13 @@ const app = express();
 const cors = require('cors');
 
 
+
 // Cargamos las variables de entorno
 require('dotenv').config();
 
 // RUTAS APP
 const apiRouter = require('./routes/api');
+const adminRouter = require('./routes/admin');
 
 // Creamos la conexión con la BD
 require('./db').connect();
@@ -36,6 +38,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // INICIALIZACION DE MODULOS DE RUTAS
 app.use('/api', apiRouter);
+app.use('/admin', adminRouter);
+
 
 
 // catch 404 and forward to error handler
