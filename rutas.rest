@@ -170,3 +170,7 @@ GET http://mypanel.sytes.net:3000/api/usuarios/getToken
 
 GET http://mypanel.sytes.net:3000/api/usuarios
 user-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJBZG1pbiIsImNyZWF0ZWRBdCI6MTYwMTAxOTQ2MSwiZXhwaXJlZEF0IjoxNjAxMDIzMDYxLCJpYXQiOjE2MDEwMTk0NjF9.3f43h6WZl7jQqZ3McGP1WMCg2kjqBp1pXvrULslDl80
+
+###
+GET http://mypanel.sytes.net:3555/editor3
+Authorization: Basic cm9vdDoxeTIrUg==

@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const Anuncio = require("../controller/anuncios.controller");
-const Usuarios = require("../controller/usuario.controller")
+const Usuarios = require("../controller/usuario.controller");
 
 router.get("/", (req, res) => {
   res.render("index");
