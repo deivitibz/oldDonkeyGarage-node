@@ -1,5 +1,20 @@
 {
     "files.associations": {
         "*.yaml": "home-assistant"
-    }
+    },
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "mypanel.sytes.net",
+            "port": 3306,
+            "driver": "MariaDB",
+            "name": "mypanel",
+            "database": "donkey",
+            "username": "olddonkeygarage",
+            "password": "olddonkeygarage"
+        }
+    ]
 }

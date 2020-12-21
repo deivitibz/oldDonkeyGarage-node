@@ -1,49 +1,56 @@
+@url = http://localhost:3000
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJBZG1pbiIsImNyZWF0ZWRBdCI6MTYwNzk0MDI1MCwiZXhwaXJlZEF0IjoxNjA3OTQzODUwLCJpYXQiOjE2MDc5NDAyNTB9.3TZv0Gd6TXQXJTXIq-JdYUu3SSWmC2PIvd52bwUSIaY
+
+###
+GET {{url}}/api/usuarios/getToken
+
 ### API USUARIOS
-GET http://localhost:3000/api/usuarios
-UserToken: 
+GET {{url}}/api/usuarios
+user-token: {{token}}
 ###
-POST http://localhost:3000/api/usuarios
+POST {{url}}/api/usuarios
+user-token: {{token}}
 ###
-PUT http://localhost:3000/api/usuarios
+PUT {{url}}/api/usuarios
 ###
-DELETE http://localhost:3000/api/usuarios
+DELETE {{url}}/api/usuarios
 ###
 ### API ANUNCIOS
-GET http://localhost:3000/api/anuncios
+GET {{url}}/api/anuncios
 ###
-POST http://localhost:3000/api/anuncios
+POST {{url}}/api/anuncios
 ###
-PUT http://localhost:3000/api/anuncios
+PUT {{url}}/api/anuncios
 ###
-DELETE http://localhost:3000/api/anuncios
+DELETE {{url}}/api/anuncios
 ###
 ### API NOTICIAS
-GET http://localhost:3000/api/noticias
+GET {{url}}/api/noticias
 ###
-POST http://localhost:3000/api/noticias
+POST {{url}}/api/noticias
 ###
-PUT http://localhost:3000/api/noticias
+PUT {{url}}/api/noticias
 ###
-DELETE http://localhost:3000/api/noticias
+DELETE {{url}}/api/noticias
 ###
 ### API MOTOCICLETAS
-GET http://localhost:3000/api/motos
+GET {{url}}/api/motos
 ###
-POST http://localhost:3000/api/motos
+POST {{url}}/api/motos
 Content-Type: application/json
 
 {
     "tipo": "asdf"
 }
 ###
-PUT http://localhost:3000/api/motos
+PUT {{url}}/api/motos
 ###
-DELETE http://localhost:3000/api/motos
+DELETE {{url}}/api/motos
 
 
 ### registrar usuario
 
-POST http://localhost:3000/api/usuarios/registro
+POST {{url}}/api/usuarios/registro
 Content-Type: application/json
 
 {
@@ -53,7 +60,7 @@ Content-Type: application/json
 }
 
 ### UPLOAD IMAGEN
-POST http://localhost:3000/api/anuncios/upload
+POST {{url}}/api/anuncios/upload
 Content-Type: multipart/form-data
 
 {
@@ -62,7 +69,7 @@ Content-Type: multipart/form-data
 
 ### login usuario
 
-POST http://localhost:3000/api/usuarios/login
+POST {{url}}/api/usuarios/login
 Content-Type: application/json
 
 {
@@ -72,11 +79,11 @@ Content-Type: application/json
 
 
 ###
-GET http://localhost:3000/api/anuncios/1
+GET {{url}}/api/anuncios/1
 user-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIzLCJyb2xlIjoiQWRtaW4iLCJjcmVhdGVkQXQiOjE1OTMzODU1OTgsImV4cGlyZWRBdCI6MTU5MzM4OTE5OCwiaWF0IjoxNTkzMzg1NTk4fQ.Dv0D1Q6VuRyZvX3UARSLFNxbJhQoj3IXWnEFhV3AXxY
 
 ###
-PUT http://localhost:3000/api/anuncios/1
+PUT {{url}}/api/anuncios/1
 Content-Type: application/json
 user-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIzLCJyb2xlIjoiQWRtaW4iLCJjcmVhdGVkQXQiOjE1OTMzODU1OTgsImV4cGlyZWRBdCI6MTU5MzM4OTE5OCwiaWF0IjoxNTkzMzg1NTk4fQ.Dv0D1Q6VuRyZvX3UARSLFNxbJhQoj3IXWnEFhV3AXxY
 
@@ -99,24 +106,24 @@ user-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIzLCJyb2xlIjoiQWR
 }
 
 ###
-GET http://localhost:3000/api/perfil
+GET {{url}}/api/perfil
 
 ###
-GET http://localhost:3000/api/anuncios/getbycategoria/bobber
+GET {{url}}/api/anuncios/getbycategoria/bobber
 user-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIzLCJyb2xlIjoiQWRtaW4iLCJjcmVhdGVkQXQiOjE1OTMzODU1OTgsImV4cGlyZWRBdCI6MTU5MzM4OTE5OCwiaWF0IjoxNTkzMzg1NTk4fQ.Dv0D1Q6VuRyZvX3UARSLFNxbJhQoj3IXWnEFhV3AXxY
 
 ###
-GET http://localhost:3000/api/motos
+GET {{url}}/api/motos
 
 
 ###
 POST http://pikukoiptv.zapto.org:25500/api.php
 ###
-GET  http://localhost:3000/api/tutoriales
+GET  {{url}}/api/tutoriales
 user-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIzLCJyb2xlIjoiQ29uc3RydWN0b3IiLCJjcmVhdGVkQXQiOjE1OTMzMDczNDEsImV4cGlyZWRBdCI6MTU5MzMxMDk0MSwiaWF0IjoxNTkzMzA3MzQxfQ.W87vAxIqMfF_X7GMzPZvAadVdtXDJr_5BgxqfcLv5WY
 
 ###
-PUT http://localhost:3000/api/usuarios/52
+PUT {{url}}/api/usuarios/52
 Content-Type: application/json
 user-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIzLCJyb2xlIjoiQ29uc3RydWN0b3IiLCJjcmVhdGVkQXQiOjE1OTMzMDczNDEsImV4cGlyZWRBdCI6MTU5MzMxMDk0MSwiaWF0IjoxNTkzMzA3MzQxfQ.W87vAxIqMfF_X7GMzPZvAadVdtXDJr_5BgxqfcLv5WY
 
@@ -127,7 +134,7 @@ user-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIzLCJyb2xlIjoiQ29
 }
 
 ###
-PUT http://localhost:3000/api/anuncios/1
+PUT {{url}}/api/anuncios/1
 Content-Type: application/json
 user-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIzLCJyb2xlIjoiQ29uc3RydWN0b3IiLCJjcmVhdGVkQXQiOjE1OTMzNjAyMjYsImV4cGlyZWRBdCI6MTU5MzM2MzgyNiwiaWF0IjoxNTkzMzYwMjI2fQ.mys_tbk5HYwV_8I3J4ZtRLS0y5KvtqyD-onjn_pXNOA
 
@@ -149,7 +156,7 @@ user-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIzLCJyb2xlIjoiQ29
   }
 
 ### 
-PUT http://localhost:3000/api/tutoriales/1
+PUT {{url}}/api/tutoriales/1
 Content-Type: application/json
 user-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIzLCJyb2xlIjoiQ29uc3RydWN0b3IiLCJjcmVhdGVkQXQiOjE1OTMzNjM5OTUsImV4cGlyZWRBdCI6MTU5MzM2NzU5NSwiaWF0IjoxNTkzMzYzOTk1fQ.lctmGNgOF_VWL__dClEnFBvT05WSD0rLVUr1skOnobI
 
@@ -174,3 +181,6 @@ user-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJBZG1
 ###
 GET http://mypanel.sytes.net:3555/editor3
 Authorization: Basic cm9vdDoxeTIrUg==
+
+###
+GET {{url}}/api/usuarios/getToken

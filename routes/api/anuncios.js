@@ -3,7 +3,10 @@ const router = express.Router();
 const Anuncio = require("../../controller/anuncios.controller");
 const {checkToken} = require("../middlewares");
 
+const {User} = require("../../controller/usuario.sequelize");
+
 const multer = require("multer");
+const {response} = require("../../app");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -18,6 +21,11 @@ const options = {
 };
 
 const upload = multer(options);
+
+const responseData = {
+  status: 200,
+  data: {},
+};
 
 // GET http://localhost:3000/api/anuncios
 // obtener todos los anuncios
@@ -57,12 +65,15 @@ router.get("/getbycategoria/:categoria", async (req, res) => {
 router.post("/", async (req, res) => {
   try {
     const result = await Anuncio.create(req.body);
+    responseData.data = result;
     if (result["affectedRows"] === 1) {
       //res.json({success: "Se a creado un anuncio"});
       res.redirect("/admin/anuncios");
     }
   } catch (e) {
-     res.redirect('back');
+    responseData.status = "";
+
+    res.redirect("back");
     //res.json({error: e});
   }
 });
@@ -97,5 +108,7 @@ router.post("/upload", upload.single("imagen_id"), (req, res) => {
   console.log(req.body);
   res.json({message: "ok"});
 });
+
+router.get("/api", (req, res) => {});
 
 module.exports = router;
