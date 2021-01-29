@@ -15,26 +15,12 @@ const storage = multer.diskStorage({
 const upload = multer({storage: storage})
 
 
-router.post('/',upload.single('imagen'), async function (req, res) {
-    // req.file is the `avatar` file
-    // req.body will hold the text fields, if there were any
-    const nuevaImagen = req.file;
-    nuevaImagen.userId = req.body.userId;
-    const result = await Upload.uploadFileUser(nuevaImagen)
-    Upload.uploadFileUser()
-
-    if (result['affectedRows'] === 1) {
-      res.json({
-          success: 'Registro Correcto',
-      });
-  } else {
-      res.json({
-          error: 'Error en el registro'
-      })
-  }
-     
-
-     
+/* router.post('/',upload.single('imagen'), async function (req, res) {
+    res.json(req.file);
+  })
+   */
+router.post('/',upload.single('imagen'), (req, res) =>  {
+    res.json(req.file);
   })
   
 

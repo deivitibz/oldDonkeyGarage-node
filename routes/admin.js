@@ -47,7 +47,7 @@ router.post('/check', async (req, res) => {
   //console.log(response);
 });
 
-router.post("/login", async (req, res) => {
+router.post("/adminLogin", async (req, res) => {
 
   try {
     const usuario = await User.findOne({
@@ -83,6 +83,30 @@ router.post("/login", async (req, res) => {
     }
   } catch (error) {
     res.render("404");
+    res.status(400);
+    const message = error ? error : (error = error.message);
+    res.json(errorHandler(req, res, message));
+  }
+});
+
+router.post('/login', async (req, res) => {
+  try {
+
+    const usuario = await User.findOne({
+      where: {
+        email: req.body.email,
+      },
+    });
+
+    if (usuario) {
+      const check = checkPassword(req.body.password, usuario.password);
+
+      if (check) {
+         res.json({message: 'ok'});
+      }
+    }
+    
+  } catch (error) {
     res.status(400);
     const message = error ? error : (error = error.message);
     res.json(errorHandler(req, res, message));
