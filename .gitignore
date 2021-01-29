@@ -1,4 +1,4 @@
 node_modules
 uploads
-.env
-.ds_store
+.env*
+.DS_Store*
