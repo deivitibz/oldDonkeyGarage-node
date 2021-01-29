@@ -22,4 +22,11 @@ function responseHandler(req, res, message) {
     };
   }
 
-module.exports = { responseHandler, errorHandler }
+  function checkBody(body, modelKeys){
+    let array1 = Object.keys(modelKeys).toString()
+    let array2 = Object.keys(body).toString()
+    return array1 === array2
+
+  }
+
+module.exports = { responseHandler, errorHandler, checkBody }

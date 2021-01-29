@@ -7,7 +7,7 @@ const connect = () => {
   sequelize
     .authenticate()
     .then(() => {
-      console.log("ok");
+      console.log("database connected");
     })
     .catch((err) => {
       console.log(err);
@@ -17,5 +17,7 @@ const connect = () => {
 const dbSync = async () => {
   await sequelize.sync({force: false});
 };
+
+
 
 module.exports = {connect, sequelize, Model, DataTypes};

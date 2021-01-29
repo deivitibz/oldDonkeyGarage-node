@@ -13,9 +13,13 @@ require("dotenv").config();
 
 // RUTAS APP
 const apiRouter = require("./routes/api");
+
+const apiV1Router = require('./routes/apiV1')
+
 const adminRouter = require("./routes/admin");
 
-require("./sequelize").connect();
+//require("./sequelize").connect();
+require('./mongoose').mongooseInit()
 
 
 app.get("/", (req, res) => {
@@ -23,7 +27,9 @@ app.get("/", (req, res) => {
 });
 
 // Creamos la conexión con la BD
-require("./db").connect();
+//require("./db").connect();
+
+
 
 // middlewares
 
@@ -45,6 +51,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // INICIALIZACION DE MODULOS DE RUTAS
 app.use("/api", apiRouter);
+app.use('/api/v1', apiV1Router)
 app.use("/admin", adminRouter);
 
 // catch 404 and forward to error handler

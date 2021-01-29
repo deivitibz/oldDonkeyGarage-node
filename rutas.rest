@@ -1,6 +1,7 @@
 @url = http://localhost:3000
 @token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJBZG1pbiIsImNyZWF0ZWRBdCI6MTYwODc2NzY1MiwiZXhwaXJlZEF0IjoxNjA4ODU0MDUyLCJpYXQiOjE2MDg3Njc2NTJ9.9FXk4wNrMV9558FuxpNSd1fPUDe27eox8vmJ83jVPfo
 
+@urlv1 = http://localhost:3000/api/v1
 ###
 GET {{url}}/api/usuarios/getToken
 
@@ -69,14 +70,25 @@ Content-Type: multipart/form-data
 
 ### login usuario
 
+POST {{url}}/api/usuarios/register
+Content-Type: application/json
+
+{
+    "email": "admin@olddonkeygarage.com",
+    "password": "123"
+}
+
+###
 POST {{url}}/api/usuarios/login
 Content-Type: application/json
 
 {
-    "email": "deivit@deivit.es",
-    "password": "12345"
+    "email": "admin@olddonkeygarage.com",
+    "password": "123"
 }
 
+###
+GET {{url}}/api/usuarios/register
 
 ###
 GET {{url}}/api/anuncios/1
@@ -185,26 +197,35 @@ Authorization: Basic cm9vdDoxeTIrUg==
 ###
 GET {{url}}/api/usuarios/getToken
 
-###
-GET {{url}}/api/usuarios
 
+############################################################
+
+GET {{urlv1}}/usuarios
 
 ###
-PUT {{url}}/api/usuarios/1
+GET {{urlv1}}/usuarios/6005a423024b8008a8002ff0
+
+###
+POST {{urlv1}}/usuarios
 Content-Type: application/json
-user-token: {{token}}
-
-{
-  "email": "admin@admin.com"
-}
-
-###
-POST {{url}}/api/usuarios
-Content-Type: application/json
-user-token: {{token}}
 
 {
   "username": "deivit",
   "email": "admin@olddonkeygarage.com",
-  "password": "123"
+  "password": "123",
+  "role": "Admin"
 }
+
+###
+PUT {{urlv1}}/usuarios/6005a423024b8008a8002ff0
+Content-Type: application/json
+
+{
+  "username": "deivit",
+  "email": "admin@olddonkeygarage.com",
+  "password": "222222222",
+  "role": "Admin"
+}
+###
+DELETE {{urlv1}}/usuarios/6005741abe550a10b477eeaa
+
