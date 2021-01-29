@@ -1,15 +1,15 @@
 const router = require("express").Router();
 const Anuncio = require("../controller/anuncios.controller");
 const Usuarios = require("../controller/usuario.controller");
-const {checkAdmin, saveUser} = require("../routes/middlewares");
-const {checkPassword, createToken} = require("../routes/auth");
-const {errorHandler, responseHandler} = require("./utils");
+const { checkAdmin, saveUser } = require("../routes/middlewares");
+const { checkPassword, createToken } = require("../routes/auth");
+const { errorHandler, responseHandler } = require("./utils");
 
 const axios = require('axios').default;
 
-const qs = require ('querystring');
+const qs = require('querystring');
 
-const {User} = require("../controller/usuario.sequelize");
+const { User } = require("../controller/usuario.sequelize");
 
 const usuariosRouter = require("./admin/usuariosRouter");
 const anunciosRouter = require("./admin/anunciosRouter");
@@ -32,7 +32,7 @@ router.post('/check', async (req, res) => {
   const data = req.body
   const options = {
     method: 'POST',
-    headers: { 'user-token': req.headers.authorization},
+    headers: { 'user-token': req.headers.authorization },
     data: {
       username: req.body.username,
       email: req.body.email,
@@ -40,12 +40,23 @@ router.post('/check', async (req, res) => {
       rol: req.body.rol
     }
   }
-  const response = await axios.post('http://localhost:3000/admin/login',options)
+  const response = await axios.post('http://localhost:3000/admin/login', options)
   //res.send('ok');
   //res.render('index');
-  res.set({'user-token': req.headers['user-token']}).send(response.data);
+  res.set({ 'user-token': req.headers['user-token'] }).send(response.data);
   //console.log(response);
 });
+
+router.post("/login", async (req, res) => {
+if (!req.body.email || !req.body.password) {
+    res.status(400).json({
+      status: 400,
+      message: 'No headers',
+    })
+    }
+})
+
+
 
 router.post("/adminLogin", async (req, res) => {
 
@@ -65,8 +76,8 @@ router.post("/adminLogin", async (req, res) => {
         const response = responseHandler(req, res, "Login Correcto");
         usuario.rol === "Admin"
           ? res
-            .set({'Authorization': req.headers.user_token})
-            .render("index", {user: usuario})
+            .cookie( 'Authorization', req.headers.user_token )
+            .render("index", { user: usuario, token: req.headers.user_token })
           : res.json(response);
       } else {
         res.render("404");
@@ -105,7 +116,7 @@ router.post('/login', async (req, res) => {
          res.json({message: 'ok'});
       }
     }
-    
+
   } catch (error) {
     res.status(400);
     const message = error ? error : (error = error.message);

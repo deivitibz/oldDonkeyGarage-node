@@ -1,7 +1,6 @@
 const {Sequelize, Model, DataTypes} = require("sequelize");
 const sequelize = new Sequelize(
-  //"mariadb://donkey:olddonkeygarage@mypanel.sytes.net:3306/olddonkeygarage"
-  "mariadb://root:@localhost:3306/olddonkeygarage"
+  "mariadb://donkey:olddonkeygarage@mypanel.sytes.net:7999/olddonkeygarage"
 );
 
 const connect = () => {

@@ -1,5 +1,5 @@
 @url = http://localhost:3000
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJBZG1pbiIsImNyZWF0ZWRBdCI6MTYwNzk0MDI1MCwiZXhwaXJlZEF0IjoxNjA3OTQzODUwLCJpYXQiOjE2MDc5NDAyNTB9.3TZv0Gd6TXQXJTXIq-JdYUu3SSWmC2PIvd52bwUSIaY
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJBZG1pbiIsImNyZWF0ZWRBdCI6MTYwODc2NzY1MiwiZXhwaXJlZEF0IjoxNjA4ODU0MDUyLCJpYXQiOjE2MDg3Njc2NTJ9.9FXk4wNrMV9558FuxpNSd1fPUDe27eox8vmJ83jVPfo
 
 @urlv1 = http://localhost:3000/api/v1
 ###
@@ -65,7 +65,7 @@ POST {{url}}/api/anuncios/upload
 Content-Type: multipart/form-data
 
 {
-  
+
 }
 
 ### login usuario
@@ -139,7 +139,7 @@ PUT {{url}}/api/usuarios/52
 Content-Type: application/json
 user-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIzLCJyb2xlIjoiQ29uc3RydWN0b3IiLCJjcmVhdGVkQXQiOjE1OTMzMDczNDEsImV4cGlyZWRBdCI6MTU5MzMxMDk0MSwiaWF0IjoxNTkzMzA3MzQxfQ.W87vAxIqMfF_X7GMzPZvAadVdtXDJr_5BgxqfcLv5WY
 
-{   
+{
     "username": "pepito",
     "email": "deivit@deivit.es",
     "password": "12345"
@@ -167,7 +167,7 @@ user-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIzLCJyb2xlIjoiQ29
     "imagen_id": ""
   }
 
-### 
+###
 PUT {{url}}/api/tutoriales/1
 Content-Type: application/json
 user-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIzLCJyb2xlIjoiQ29uc3RydWN0b3IiLCJjcmVhdGVkQXQiOjE1OTMzNjM5OTUsImV4cGlyZWRBdCI6MTU5MzM2NzU5NSwiaWF0IjoxNTkzMzYzOTk1fQ.lctmGNgOF_VWL__dClEnFBvT05WSD0rLVUr1skOnobI

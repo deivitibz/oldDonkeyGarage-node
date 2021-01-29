@@ -12,7 +12,9 @@ const messageHandler = (body,headers,message) => {
         headers: headers,
         message: message
     }
+    
 }
+
 
 function createToken(userId, role) {
     const payload = {
@@ -24,5 +26,9 @@ function createToken(userId, role) {
     return jwt.sign(payload, process.env.SECRET_KEY);
   }
 
-module.exports = { checkPassword, messageHandler, createToken}
+function hashPwd(password) {
+  return bcrypt.hashSync(password, 10)
+}
+
+module.exports = { checkPassword, messageHandler, createToken, hashPwd}
     
