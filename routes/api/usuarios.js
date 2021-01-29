@@ -5,7 +5,7 @@ const bcrypt = require("bcryptjs");
 const {checkToken,saveUser} = require("../middlewares");
 
 const {errorHandler, responseHandler} = require("../utils");
-const {checkPassword} = require("../auth");
+const {checkPassword, createToken, hashPwd} = require("../auth");
 
 const uuidv4 = require("uuid");
 
@@ -37,8 +37,19 @@ router.get("/:id",  async (req, res) => {
   res.json(user);
 });
 
+router.post('/create', async (req, res) => {
+  try {
+    req.body.password = hashPwd(req.body.password);
+    const response = await User.create(req.body);
+     res.json(response);
+  } catch (error) {
+     res.json(error);
+  }
+});
+
 
 router.post("/", async (req, res) => {
+
   try {
     req.body.password = bcrypt.hashSync(req.body.password, 10);
     req.body.rol === "" || !req.body.rol
@@ -76,9 +87,22 @@ router.post("/", async (req, res) => {
     const message = error ? error : (error = error.message);
     res.json(message);
   }
+
 });
 
-
+router.put('/:id', async (req,res)=> {
+  const id = parseInt(req.params.id);
+  try {
+    const response = await User.update(req.body, {
+      where: {
+        id: id
+      }
+    });
+    res.json(response)
+  } catch (error) {
+    res.json(error)
+  }
+})
 
 
 module.exports = router;
