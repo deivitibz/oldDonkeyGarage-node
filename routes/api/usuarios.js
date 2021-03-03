@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const bcrypt = require("bcryptjs");
-const uuidv4 = require("uuid");
+//const uuidv4 = require("uuid");
 
 const { firebase, firebaseInit } = require('../../firebase')
 
@@ -9,7 +9,7 @@ const {checkToken,saveUser} = require("../middlewares");
 const {errorHandler, responseHandler} = require("../utils");
 const {checkPassword, createToken, hashPwd} = require("../auth");
 
-const uuidv4 = require("uuid");
+//const uuidv4 = require("uuid");
 
 //const Usuario = require("../../controller/usuario.controller");
 const { User } = require("../../controller/usuario.sequelize");
@@ -155,3 +155,4 @@ router.put('/:id', async (req,res)=> {
 
 
 module.exports = {router};
+`
