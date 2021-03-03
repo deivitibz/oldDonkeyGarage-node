@@ -11,7 +11,7 @@ const apiTutorialesRouter = require("./api/tutoriales");
 
 router.use("/upload", apiUploadRouter);
 router.use("/noticias", apiNoticiasRouter);
-router.use("/usuarios", apiUsuariosRouter);
+//router.use("/usuarios", apiUsuariosRouter);
 router.use("/anuncios", apiAnunciosRouter);
 router.use("/motos", checkToken, apiMotosRouter);
 router.use("/tutoriales", apiTutorialesRouter);
