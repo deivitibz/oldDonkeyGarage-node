@@ -19,7 +19,8 @@ const apiV1Router = require('./routes/apiV1')
 const adminRouter = require("./routes/admin");
 
 //require("./sequelize").connect();
-require('./mongoose').mongooseInit()
+
+//require('./mongoose').mongooseInit()
 
 
 app.get("/", (req, res) => {
