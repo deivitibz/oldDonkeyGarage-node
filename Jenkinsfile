@@ -6,7 +6,7 @@ pipeline {
   stages {
     stage('Cloning Git') {
       steps {
-        git 'https://github.com/xxxx'
+        git 'https://github.com/deivitibz/oldDonkeyGarage-node.git'
       }
     }
     stage('Install dependencies') {
