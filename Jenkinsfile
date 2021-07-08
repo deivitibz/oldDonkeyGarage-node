@@ -11,7 +11,7 @@ pipeline {
     }
     stage('Install dependencies') {
       steps {
-        sh 'npm i -save express'
+        sh 'npm i -save express http-errors jsonwebtoken mongoose morgan nodemon dotenv moment sequelize'
       }
     }
     stage('Test') {
