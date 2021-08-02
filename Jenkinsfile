@@ -1,22 +1,24 @@
+#!/usr/bin/env groovy
 pipeline {
   agent any
-
-  tools {nodejs "node"}
-
+  tools {nodejs "latest"}
   stages {
-    stage('Cloning Git') {
+    stage('preflight') {
       steps {
-        git 'https://github.com/deivitibz/oldDonkeyGarage-node.git'
+        echo sh(returnStdout: true, script: 'env')
+        sh 'node -v'
       }
     }
-    stage('Install dependencies') {
+    stage('build') {
       steps {
-        sh 'npm i -save express http-errors jsonwebtoken mongoose morgan nodemon dotenv moment sequelize'
+        sh 'npm --version'
+        sh 'git log --reverse -1'
+        sh 'npm install'
       }
     }
-    stage('Test') {
+    stage('test') {
       steps {
-         sh 'node ./bin/www'
+        sh 'npm test'
       }
     }
   }
