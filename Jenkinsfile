@@ -12,7 +12,9 @@ pipeline {
         stage('Docker Build') {
       agent any
       steps {
-        sh 'docker build -t shanem/spring-petclinic:latest .'
+        sh 'docker container rm nodeapp'
+        sh 'docker build -t deivit/nodeapp .'
+        sh 'docker run -d --name nodeapp deivit/nodeapp'
       }
     }
   }
