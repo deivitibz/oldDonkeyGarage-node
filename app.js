@@ -23,7 +23,8 @@ require("dotenv").config();
 //require('./mongoose').mongooseInit()
 
 app.get("/", (req, res) => {
-  res.json({ messaeg: "ola k ase" });
+  console.log("asdf");
+  res.json({ message: "ola k ase" });
 });
 
 // Creamos la conexión con la BD
