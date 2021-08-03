@@ -30,7 +30,7 @@ pipeline {
     stage('Deploy') {
       agent any
       steps {
-        sh 'docker run -d --name nodeapp deivit/nodeapp'
+        sh 'docker run -d --name nodeapp deivit/nodeapp -p 3000:3000'
       }
     }
   }
