@@ -4,7 +4,7 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const app = express();
-const {checkAdmin, saveUser} = require("./routes/middlewares");
+const { checkAdmin, saveUser } = require("./routes/middlewares");
 
 const cors = require("cors");
 
@@ -12,25 +12,22 @@ const cors = require("cors");
 require("dotenv").config();
 
 // RUTAS APP
-const apiRouter = require("./routes/api");
+//const apiRouter = require("./routes/api");
 
-const apiV1Router = require('./routes/apiV1')
+// const apiV1Router = require('./routes/apiV1')
 
-const adminRouter = require("./routes/admin");
+// const adminRouter = require("./routes/admin");
 
 //require("./sequelize").connect();
 
 //require('./mongoose').mongooseInit()
 
-
 app.get("/", (req, res) => {
-  res.json(array);
+  res.json({ messaeg: "ola k ase" });
 });
 
 // Creamos la conexión con la BD
 //require("./db").connect();
-
-
 
 // middlewares
 
@@ -51,9 +48,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 // INICIALIZACION DE MODULOS DE RUTAS
-app.use("/api", apiRouter);
-app.use('/api/v1', apiV1Router)
-app.use("/admin", adminRouter);
+// app.use("/api", apiRouter);
+// app.use("/api/v1", apiV1Router);
+// app.use("/admin", adminRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
