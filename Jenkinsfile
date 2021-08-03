@@ -12,6 +12,7 @@ pipeline {
         stage('Docker Build') {
       agent any
       steps {
+        sh 'docker container stop nodeapp'
         sh 'docker container rm nodeapp'
         sh 'docker build -t deivit/nodeapp .'
         sh 'docker run -d --name nodeapp deivit/nodeapp'
