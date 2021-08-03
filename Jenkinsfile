@@ -9,12 +9,27 @@ pipeline {
         sh 'npm install'
       }
     }
-        stage('Docker Build') {
+    stage('Docker Build') {
+      agent any
+      steps {
+        sh 'docker build -t deivit/nodeapp .'
+      }
+    }
+    stage('Docker Stop Container') {
       agent any
       steps {
         sh 'docker container stop nodeapp'
+      }
+    }
+    stage('Docker Delete Container') {
+      agent any
+      steps {
         sh 'docker container rm nodeapp'
-        sh 'docker build -t deivit/nodeapp .'
+      }
+    }
+    stage('Deploy') {
+      agent any
+      steps {
         sh 'docker run -d --name nodeapp deivit/nodeapp'
       }
     }
