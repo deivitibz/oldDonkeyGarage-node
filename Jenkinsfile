@@ -1,5 +1,7 @@
 pipeline {
   agent any
+
+  checkout scm
  
   tools {nodejs "node12"}
  
